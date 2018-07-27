@@ -1,5 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Chapter } from "../../models/common/cursus/Chapter";
+import { LogMethod } from "../../decorators/LogMethod";
+import { Theory } from "../../models/common/cursus/Theory";
+import { Exam } from "../../models/common/cursus/Exam";
+import { Exercise } from "../../models/common/cursus/Exercise";
+import { Step } from "../../models/common/Step";
 
 /*
   Generated class for the CursusProvider provider.
@@ -10,8 +16,54 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CursusProvider {
 
+  chapters: Array<Chapter>;
+
   constructor(public http: HttpClient) {
-    console.log('Hello CursusProvider Provider');
+    this.chapters = [];
+    this.chapters.push(
+      new Chapter()
+        .withTitle('Chapter 1')
+        .withUnlocked(true)
+        .withLessons([
+          new Theory()
+            .withId('chapter-1-lesson-1')
+            .withTitle('Music notes')
+            .withLevel(1)
+            .withStep(
+              new Step()
+                .withTotal(1)
+                .withCurrent(0)
+            )
+            .withUnlocked(true),
+          new Exercise()
+            .withId('chapter-1-lesson-1.1')
+            .withTitle('Music notes')
+            .withLevel(1)
+            .withStep(
+              new Step()
+                .withTotal(3)
+                .withCurrent(0)
+            )
+            .withUnlocked(false),
+          new Exam()
+            .withId('chapter-1-lesson-1.2')
+            .withTitle('Test: Music notes')
+            .withLevel(1)
+            .withStep(
+              new Step()
+                .withTotal(3)
+                .withCurrent(0)
+            )
+            .withUnlocked(false)
+        ])
+    )
+  }
+
+  @LogMethod()
+  getChapters(): Promise<Array<Chapter>> {
+    return new Promise((resolve) => {
+      resolve(this.chapters);
+    });
   }
 
 }

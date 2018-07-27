@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ContextProvider } from "../../providers/context/context";
+import { CountDownResource } from "../../models/common/cursus/CountDownResource";
 
 /**
  * Generated class for the CountDownResourceComponent component.
@@ -12,11 +14,13 @@ import { Component } from '@angular/core';
 })
 export class CountDownResourceComponent {
 
-  text: string;
+  resource: CountDownResource;
 
-  constructor() {
-    console.log('Hello CountDownResourceComponent Component');
-    this.text = 'Hello World';
+  constructor(public contextProvider: ContextProvider) {
+  }
+
+  ngOnInit() {
+    this.resource = this.contextProvider.getCountDownResource();
   }
 
 }

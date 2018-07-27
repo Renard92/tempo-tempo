@@ -1,3 +1,11 @@
-/**
- * Created by olivier on 7/20/18.
- */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+var ContextEvent = /** @class */ (function () {
+  function ContextEvent() {
+  }
+  return ContextEvent;
+}());
+
+exports.ContextEvent = ContextEvent;

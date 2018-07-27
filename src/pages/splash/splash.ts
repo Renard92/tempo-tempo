@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ViewController } from 'ionic-angular';
+import { SplashScreen } from "@ionic-native/splash-screen";
+import {ContextProvider} from "../../providers/context/context";
+import {ContextEvent} from "../../models/common/event/ContextEvent";
+import {EmitterProvider} from "../../providers/emitter/emitter";
 
 /**
  * Generated class for the SplashPage page.
@@ -15,11 +19,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SplashPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public viewCtrl: ViewController, public splashScreen: SplashScreen, public contextProvider: ContextProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SplashPage');
+  ionViewDidEnter() {
+    EmitterProvider.get(ContextEvent.INIT_SUCCESS).subscribe(() => {
+      this.splashScreen.hide();
+      this.viewCtrl.dismiss();
+    });
+
+    EmitterProvider.get(ContextEvent.INIT_ERROR).subscribe(() => {
+      setTimeout(() => {
+        this.contextProvider.init();
+      }, 1000);
+    });
+
+    setTimeout(() => {
+      this.contextProvider.init();
+    }, 2400);
   }
 
 }

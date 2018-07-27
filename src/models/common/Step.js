@@ -1,3 +1,11 @@
-/**
- * Created by olivier on 7/27/18.
- */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+var Step = /** @class */ (function () {
+  function Step() {
+  }
+  return Step;
+}());
+
+exports.Step = Step;

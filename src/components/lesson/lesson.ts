@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Lesson } from "../../models/common/cursus/Lesson";
 
 /**
  * Generated class for the LessonComponent component.
@@ -12,11 +13,13 @@ import { Component } from '@angular/core';
 })
 export class LessonComponent {
 
-  text: string;
+  @Input()
+  lesson: Lesson;
 
   constructor() {
-    console.log('Hello LessonComponent Component');
-    this.text = 'Hello World';
+  }
+
+  ngOnInit() {
   }
 
 }

@@ -1,3 +1,11 @@
-/**
- * Created by olivier on 7/25/18.
- */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+var Exercise = /** @class */ (function () {
+  function Exercise() {
+  }
+  return Exercise;
+}());
+
+exports.Exercise = Exercise;

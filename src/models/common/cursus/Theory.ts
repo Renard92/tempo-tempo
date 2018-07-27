@@ -1,3 +1,4 @@
-/**
- * Created by olivier on 7/25/18.
- */
+import {Lesson} from "./Lesson";
+
+export class Theory extends Lesson {
+}

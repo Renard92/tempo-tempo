@@ -7,12 +7,22 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>course</ion-title>
+    <ion-title start>Course</ion-title>
+    <ion-buttons end>
+      <count-down-resource></count-down-resource>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <div *ngFor="let chapter of chapters">
+    <div> {{ chapter.title }} </div>
+    <div *ngFor="let lesson of chapter.lessons">
+      <lesson (tap)="presentLesson(lesson)" [lesson]="lesson"></lesson>
+    </div>
+  </div>
 
 </ion-content>

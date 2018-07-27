@@ -1,21 +1,47 @@
-export class Achievement {
+import {IAchievement} from "./IAchievement";
+import {Step} from "../Step";
 
-  id: string;
-  title: string;
-  description: string;
-  stepTotal: number;
-  stepCurrent: number;
+export class Achievement implements IAchievement {
 
-  constructor (id: string, title: string, description: string, stepTotal: number, stepCurrent: number, done: boolean) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.stepTotal = stepTotal;
-    this.stepCurrent = stepCurrent;
+  public id: string;
+  public title: string;
+  public description: string;
+  public unlocked: boolean;
+  public step: Step;
+
+  constructor (
+    parameters: IAchievement = <IAchievement>{}
+  ) {
+    this.id = parameters.id;
+    this.title = parameters.title;
+    this.description = parameters.description;
+    this.unlocked = parameters.unlocked;
+    this.step = parameters.step;
   }
 
-  isDone () {
-    return this.stepCurrent === this.stepTotal;
+  withId(id: string) {
+    this.id = id;
+    return this;
+  }
+
+  withTitle(title: string) {
+    this.title = title;
+    return this;
+  }
+
+  withDescription(description: string) {
+    this.description = description;
+    return this;
+  }
+
+  withUnlocked(unlocked: boolean) {
+    this.unlocked = unlocked;
+    return this;
+  }
+
+  withStep(step: Step) {
+    this.step = step;
+    return this;
   }
 
 }

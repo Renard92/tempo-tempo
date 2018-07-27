@@ -1,40 +1,73 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ProfilePage } from "../pages/profile/profile";
+import { ClassroomPage } from "../pages/classroom/classroom";
+import { CoursePage } from "../pages/course/course";
+import { MarketPage } from "../pages/market/market";
+import { OnboardingPage } from "../pages/onboarding/onboarding";
+import { SplashPage } from "../pages/splash/splash";
+import { OnboardingProvider } from '../providers/onboarding/onboarding';
+import { CursusProvider } from '../providers/cursus/cursus';
+import { ContextProvider } from '../providers/context/context';
+import { CountDownResourceComponent } from "../components/count-down-resource/count-down-resource";
+import { EmitterProvider } from '../providers/emitter/emitter';
+import { ErrorPage } from "../pages/error/error";
+import {LessonComponent} from "../components/lesson/lesson";
+import { AchievementProvider } from '../providers/achievement/achievement';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    ProfilePage,
+    ClassroomPage,
+    CoursePage,
+    MarketPage,
+    OnboardingPage,
+    SplashPage,
+    ErrorPage,
+    TabsPage,
+    CountDownResourceComponent,
+    LessonComponent
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    ProfilePage,
+    ClassroomPage,
+    CoursePage,
+    MarketPage,
+    OnboardingPage,
+    SplashPage,
+    ErrorPage,
+    TabsPage,
+    CountDownResourceComponent,
+    LessonComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    OnboardingProvider,
+    CursusProvider,
+    ContextProvider,
+    EmitterProvider,
+    AchievementProvider,
+    AchievementProvider
   ]
 })
 export class AppModule {}

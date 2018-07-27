@@ -1,3 +1,8 @@
-/**
- * Created by olivier on 7/27/18.
- */
+export interface IStep {
+  total: number;
+  current: number;
+
+  up(): IStep;
+  down(): IStep;
+  isDone(): boolean;
+}

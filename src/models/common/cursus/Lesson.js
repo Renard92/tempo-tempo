@@ -2,10 +2,10 @@
 
 Object.defineProperty(exports, "__esModule", { value: true });
 
-var Exercise = /** @class */ (function () {
-  function Exercise() {
+var Lesson = /** @class */ (function () {
+  function Lesson() {
   }
-  return Exercise;
+  return Lesson;
 }());
 
-exports.Exercise = Exercise;
+exports.Lesson = Lesson;

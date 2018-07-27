@@ -1,3 +1,3 @@
-/**
- * Created by olivier on 7/27/18.
- */
+export interface IUnlockable{
+  unlocked: boolean;
+}

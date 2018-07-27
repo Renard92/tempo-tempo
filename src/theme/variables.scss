@@ -33,12 +33,33 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
+// Default config
+// --------------------------------------------------
+//$colors: (
+//  primary:    #488aff,
+//  secondary:  #32db64,
+//  danger:     #f53d3d,
+//  light:      #f4f4f4,
+//  dark:       #222
+//);
+
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  // Theme
+  // ----------------
+  primary:   #886aea,
+  secondary: #32db64,
+  danger:    #f53d3d,
+  royal:     #488aff,
+  light:     #f4f4f4,
+  dark:      #222,
+
+  // Lesson
+  // -----------------
+  level1:     #32db64,
+  level2:     #488aff,
+  level3:     #886aea,
+  level4:     #ffbc34,
+  level5:     #f53d3d,
 );
 
 

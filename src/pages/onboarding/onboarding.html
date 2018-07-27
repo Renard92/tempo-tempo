@@ -1,18 +1,28 @@
-<!--
-  Generated template for the OnboardingPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Onboarding</ion-title>
-  </ion-navbar>
-
+  <ion-toolbar>
+    <ion-buttons end>
+      <button ion-button color="primary" (tap)="skip($event)">Got it</button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
+<ion-content padding class="tutorial-page">
 
-<ion-content padding>
+  <ion-slides color="primary" pager>
+    <ion-slide *ngFor="let slide of slides">
+
+      <img [src]="slide?.image" class="slide-image"/>
+      <h2 class="slide-title" [innerHTML]="slide?.title"></h2>
+      <p [innerHTML]="slide?.description"></p>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/imgs/onboarding/slider-img-4.svg" class="slide-image"/>
+      <h2 class="slide-title">Ready to Play?</h2>
+      <button ion-button large clear icon-end color="primary" (tap)="skip($event)">
+        Let's go
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+  </ion-slides>
 
 </ion-content>

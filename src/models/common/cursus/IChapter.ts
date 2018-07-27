@@ -1,3 +1,8 @@
-/**
- * Created by olivier on 7/27/18.
- */
+import {Lesson} from "./Lesson";
+import {IUnlockable} from "../IUnlockable";
+
+export interface IChapter extends IUnlockable {
+  id: string;
+  title: string;
+  lessons: Array<Lesson>;
+}

@@ -1,17 +1,24 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable, EventEmitter} from '@angular/core';
 
-/*
-  Generated class for the EmitterProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class EmitterProvider {
+  /**
+   * Events store
+   * @type {{}}
+   * @private
+   */
+  private static _emitters: { [id: string]: EventEmitter<any> } = {};
 
-  constructor(public http: HttpClient) {
-    console.log('Hello EmitterProvider Provider');
+  /**
+   * Try to get an event via the passed id.
+   * If the event does not exist in the store, it will be created.
+   * @param id
+   * @return {EventEmitter<any>}
+   */
+  static get(id: string): EventEmitter<any> {
+    if (!this._emitters[id]) {
+      this._emitters[id] = new EventEmitter();
+    }
+    return this._emitters[id];
   }
-
 }

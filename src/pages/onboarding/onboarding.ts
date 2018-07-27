@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { OnboardingProvider } from "../../providers/onboarding/onboarding";
+import { Slider } from "../../models/common/onboarding/Slider";
 
 /**
  * Generated class for the OnboardingPage page.
@@ -14,12 +16,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'onboarding.html',
 })
 export class OnboardingPage {
+  slides: Slider[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public onboardingProvider: OnboardingProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OnboardingPage');
+    this.onboardingProvider
+      .getSliders()
+      .then((sliders) => {
+        this.slides = sliders;
+      });
+  }
+
+  skip () {
+    this.viewCtrl.dismiss();
   }
 
 }
