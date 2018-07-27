@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { LogMethod } from "../../decorators/LogMethod";
 import { Achievement } from "../../models/common/user/Achievement";
 import { Step } from "../../models/common/Step";
-import {IAchievement} from "../../models/common/user/IAchievement";
-import {IStep} from "../../models/common/IStep";
 
 /*
  Generated class for the CursusProvider provider.
@@ -20,16 +18,16 @@ export class AchievementProvider {
   constructor(public http: HttpClient) {
     this.achievements = [];
     this.achievements.push(
-      new Achievement(<IAchievement>{
-        id: '1',
-        title: '1 Exam',
-        description: 'Lorem ipsum.',
-        unlocked: true,
-        step: new Step(<IStep>{
-          total: 1,
-          current: 1
-        })
-      })
+      new Achievement()
+        .withId('1')
+        .withTitle('1 Exam')
+        .withDescription('Lorem ipsum.')
+        .withUnlocked(true)
+        .withStep(
+          new Step()
+            .withTotal(1)
+            .withCurrent(1)
+        )
     );
     this.achievements.push(
       new Achievement()

@@ -2,14 +2,26 @@ import {Authority} from "./Authority";
 
 export class Subscription {
 
-  id: string;
-  name: string;
-  authorities: Array<Authority>;
+  constructor (
+    public id?: string,
+    public name?: string,
+    public authorities: Array<Authority> = []
+  ) {
+  }
 
-  constructor (id: string, name: string, authorities: Array<Authority>) {
+  withId(id: string): Subscription {
     this.id = id;
+    return this;
+  }
+
+  withName(name: string): Subscription {
     this.name = name;
+    return this;
+  }
+
+  withAuthorities(authorities: Array<Authority>): Subscription {
     this.authorities = authorities;
+    return this;
   }
 
 }

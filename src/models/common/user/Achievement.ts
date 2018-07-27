@@ -1,22 +1,15 @@
-import {IAchievement} from "./IAchievement";
 import {Step} from "../Step";
+import {Unlockable} from "../Unlockable";
 
-export class Achievement implements IAchievement {
-
-  public id: string;
-  public title: string;
-  public description: string;
-  public unlocked: boolean;
-  public step: Step;
+export class Achievement implements Unlockable {
 
   constructor (
-    parameters: IAchievement = <IAchievement>{}
+    public id?: string,
+    public title?: string,
+    public description?: string,
+    public unlocked: boolean = false,
+    public step: Step = new Step(),
   ) {
-    this.id = parameters.id;
-    this.title = parameters.title;
-    this.description = parameters.description;
-    this.unlocked = parameters.unlocked;
-    this.step = parameters.step;
   }
 
   withId(id: string) {

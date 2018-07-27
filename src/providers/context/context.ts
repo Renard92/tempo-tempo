@@ -14,26 +14,26 @@ import { User } from "../../models/common/User";
 */
 @Injectable()
 export class ContextProvider {
-  private loaded: boolean = false;
+  private _loaded: boolean = false;
 
-  private user: User;
-  private countDownResource: CountDownResource;
+  private _user: User;
+  private _countDownResource: CountDownResource;
 
   constructor(public http: HttpClient) {
-    this.user = new User(null, null);
-    this.countDownResource = new CountDownResource();
+    this._user = new User();
+    this._countDownResource = new CountDownResource();
   }
 
   @LogMethod()
   init() {
-    if (this.loaded) {
+    if (this._loaded) {
       EmitterProvider.get(ContextEvent.INIT_SUCCESS).emit({});
     } else {
       Promise.all([
         this.loadUser(),
         this.loadCountDownResource()
       ]).then(() => {
-        this.loaded = true;
+        this._loaded = true;
         EmitterProvider.get(ContextEvent.INIT_SUCCESS).emit({});
       }).catch(reason => {
         EmitterProvider.get(ContextEvent.INIT_ERROR).emit(reason);
@@ -44,27 +44,27 @@ export class ContextProvider {
   @LogMethod()
   loadCountDownResource(): Promise<CountDownResource> {
     return new Promise((resolve) => {
-      resolve(this.countDownResource);
+      resolve(this._countDownResource);
     });
   }
 
   @LogMethod()
   loadUser(): Promise<User> {
     return new Promise((resolve) => {
-      resolve(this.user);
+      resolve(this._user);
     });
   }
 
-  get isLoaded(): boolean {
-    return this.loaded;
+  isLoaded(): boolean {
+    return this._loaded;
   }
 
-  get getUser(): User {
-    return this.user;
+  getUser(): User {
+    return this._user;
   }
 
-  get getCountDownResource(): CountDownResource {
-    return this.countDownResource;
+  getCountDownResource(): CountDownResource {
+    return this._countDownResource;
   }
 
 }

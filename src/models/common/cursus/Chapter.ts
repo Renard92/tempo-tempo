@@ -1,20 +1,14 @@
 import {Lesson} from "./Lesson";
-import {IChapter} from "./IChapter";
+import {Unlockable} from "../Unlockable";
 
-export class Chapter implements IChapter {
-
-  public id: string;
-  public title: string;
-  public unlocked: boolean;
-  public lessons: Array<Lesson>;
+export class Chapter implements Unlockable {
 
   constructor (
-    parameters: IChapter = <IChapter>{}
+    public id?: string,
+    public title?: string,
+    public unlocked: boolean = false,
+    public lessons: Array<Lesson> = []
   ) {
-    this.id = parameters.id;
-    this.title = parameters.title;
-    this.unlocked = parameters.unlocked || false;
-    this.lessons = parameters.lessons || [];
   }
 
   withId(id: string) {

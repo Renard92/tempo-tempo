@@ -22,6 +22,7 @@ export class CursusProvider {
     this.chapters = [];
     this.chapters.push(
       new Chapter()
+        .withId('chapter-1')
         .withTitle('Chapter 1')
         .withUnlocked(true)
         .withLessons([

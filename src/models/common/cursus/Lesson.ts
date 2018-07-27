@@ -1,7 +1,7 @@
 import {Step} from "../Step";
-import {ILesson} from "./ILesson";
+import {Unlockable} from "../Unlockable";
 
-export class Lesson implements ILesson {
+export class Lesson implements Unlockable {
 
   private _id: string;
   private _title: string;
@@ -10,13 +10,17 @@ export class Lesson implements ILesson {
   private _step: Step;
 
   constructor (
-    parameters: ILesson = <ILesson>{}
+    id?: string,
+    title?: string,
+    level: number = 1,
+    unlocked: boolean = false,
+    step: Step = new Step()
   ) {
-    this._id = parameters.id;
-    this._title = parameters.title;
-    this._level = parameters.level || 1;
-    this._unlocked = parameters.unlocked || false;
-    this._step = parameters.step || new Step();
+    this.id = id;
+    this.title = title;
+    this.level = level;
+    this.unlocked = unlocked;
+    this.step = step;
   }
 
   set id(id: string) {

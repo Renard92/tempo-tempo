@@ -4,20 +4,14 @@ import {Teacher} from "./user/Teacher";
 
 export class Classroom {
 
-  id: string;
-  name: string;
-  description: string;
-  creator: User;
-  teachers: Array<Teacher>;
-  students: Array<Student>;
-
-  constructor (id: string, name: string, description: string, creator: User, teachers: Array<Teacher>, students: Array<Student>) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.creator = creator;
-    this.teachers = teachers;
-    this.students = students;
+  constructor (
+    public id?: string,
+    public name?: string,
+    public description?: string,
+    public creator: User = new User(),
+    public teachers: Array<Teacher> = [],
+    public students: Array<Student> = []
+  ) {
   }
 
 }
