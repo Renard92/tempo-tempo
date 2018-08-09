@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { Chapter } from "../../models/common/cursus/Chapter";
 import { CursusProvider } from "../../providers/cursus/cursus";
 import {ContextProvider} from "../../providers/context/context";
-import {Lesson} from "../../models/common/cursus/Lesson";
 
 /**
  * Generated class for the CoursePage page.
@@ -35,12 +34,6 @@ export class CoursePage {
       .then((chapters) => {
         this.chapters = chapters;
       });
-  }
-
-  presentLesson(lesson: Lesson) {
-    this.contextProvider
-      .getCountDownResource()
-      .remove();
   }
 
 }

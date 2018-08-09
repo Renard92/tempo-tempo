@@ -1,47 +1,40 @@
-<div class="c100 p0">
-  <img src="https://image.flaticon.com/icons/svg/806/806149.svg"/>
-  <div class="slice">
-    <div class="bar"></div>
-    <div class="fill"></div>
-  </div>
-</div>
+<ion-card>
 
-<div class="c100 p33 level-1">
-  <img src="https://image.flaticon.com/icons/svg/806/806149.svg"/>
-  <div class="slice">
-    <div class="bar"></div>
-    <div class="fill"></div>
-  </div>
-</div>
+  <ion-card-content>
+    <ion-item>
+      <ion-avatar item-start>
+        <img [src]="lesson.imageSrc">
+      </ion-avatar>
+      <h2>{{lesson.title}}</h2>
+      <p class="lesson-type">{{lesson.type}}</p>
+    </ion-item>
+    <p>
+      {{lesson.description}}
+    </p>
+  </ion-card-content>
 
-<div class="c100 p66 level-2">
-  <img src="https://image.flaticon.com/icons/svg/806/806149.svg"/>
-  <div class="slice">
-    <div class="bar"></div>
-    <div class="fill"></div>
-  </div>
-</div>
+  <ion-row no-padding>
 
-<div class="c100 p100 level-3">
-  <img src="https://image.flaticon.com/icons/svg/806/806149.svg"/>
-  <div class="slice">
-    <div class="bar"></div>
-    <div class="fill"></div>
-  </div>
-</div>
+    <ion-col>
+      <button ion-button icon-start clear small [color]="levelCls(lesson)">
+        <ion-icon name="ribbon"></ion-icon>
+        <div>Level {{lesson.level}}</div>
+      </button>
+    </ion-col>
 
-<div class="c100 p33">
-  <img src="https://image.flaticon.com/icons/svg/806/806149.svg"/>
-  <div class="slice">
-    <div class="bar"></div>
-    <div class="fill"></div>
-  </div>
-</div>
+    <ion-col align-self-center text-center>
+      <ion-note>
+        {{lesson.step.current}} / {{lesson.step.total}}
+      </ion-note>
+    </ion-col>
 
-<div class="c100 p66 level-5">
-  <img src="https://image.flaticon.com/icons/svg/806/806149.svg"/>
-  <div class="slice">
-    <div class="bar"></div>
-    <div class="fill"></div>
-  </div>
-</div>
+    <ion-col text-right>
+      <button ion-button clear small color="primary" icon-end (tap)="presentLesson(lesson)">
+        Let's go
+        <ion-icon name='arrow-round-forward'></ion-icon>
+      </button>
+    </ion-col>
+
+  </ion-row>
+
+</ion-card>

@@ -1,5 +1,5 @@
 export enum Authority {
-  CanAccessChapterI,
-  CanAccessChapterII,
-  CanAccessChapterIII
+  CanAccessChapterI   = 'CanAccessChapterI',
+  CanAccessChapterII  = 'CanAccessChapterII',
+  CanAccessChapterIII = 'CanAccessChapterIII'
 }

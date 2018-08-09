@@ -44,10 +44,17 @@ $app-direction: ltr;
 //);
 
 $colors: (
+  // Variances
+  a100: #ff9e80,
+  a400: #ff3d00,
+  a700: #dd2c00,
+
   // Theme
   // ----------------
-  primary:   #886aea,
-  secondary: #32db64,
+  primary:   #ff6e40,
+
+  secondary: #886aea,
+  success:   #32db64,
   danger:    #f53d3d,
   royal:     #488aff,
   light:     #f4f4f4,

@@ -18,11 +18,18 @@ export class CountDownResource {
     this._timer_date = new Date();
   }
 
-  remove () {
+  recover () {
+    this.stop();
+    this.remaining = this.total;
+  }
+
+  remove (): boolean {
     if (this.remaining > 0) {
       this.remaining--;
       this.start();
+      return true;
     }
+    return false;
   }
 
   add (resetTimer: boolean = true) {

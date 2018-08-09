@@ -1,161 +1,27 @@
-.rect-auto, .c100.p66 .slice, .c100.p100 .slice {
-  clip: rect(auto, auto, auto, auto);
+.button-clear-md {
+
+  &-level1 {
+    color: color($colors, level1);
+  }
+
+  &-level2 {
+    color: color($colors, level2);
+  }
+
+  &-level3 {
+    color: color($colors, level3);
+  }
+
+  &-level4 {
+    color: color($colors, level4);
+  }
+
+  &-level5 {
+    color: color($colors, level5);
+  }
+
 }
 
-.pie, .c100 .bar, .c100.p66 .fill, .c100.p100 .fill {
-  position: absolute;
-  border: 0.08em solid color($colors, primary);
-  width: 0.84em;
-  height: 0.84em;
-  clip: rect(0em, 0.5em, 1em, 0em);
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-}
-
-.bar .level-1 {
-  border: 0.08em solid color($colors, level1);
-}
-
-.bar .level-2 {
-  border: 0.08em solid color($colors, level2);
-}
-
-.bar .level-3 {
-  border: 0.08em solid color($colors, level3);
-}
-
-.bar .level-4 {
-  border: 0.08em solid color($colors, level4);
-}
-
-.bar .level-5 {
-  border: 0.08em solid color($colors, level5);
-}
-
-.pie-fill, .c100.p66 .bar:after, .c100.p66 .fill, .c100.p100 .bar:after, .c100.p100 .fill {
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
-}
-
-.c100 {
-  position: relative;
-  font-size: 120px;
-  width: 1em;
-  height: 1em;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  margin: 0 0.1em 0.1em 0;
-  background-color: #ededed;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-.c100 *, .c100 *:before, .c100 *:after {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
-.c100.center {
-  float: none;
-  margin: 0 auto;
-}
-.c100.big {
-  font-size: 240px;
-}
-.c100.small {
-  font-size: 80px;
-}
-.c100 > img {
-  position: absolute;
-  z-index: 1;
-  left: 0.4em;
-  top: 0.4em;
-  width: 4.1em;
-  line-height: 4.1em;
-  font-size: 0.205em;
-  color: #cccccc;
-  display: block;
-  text-align: center;
-  white-space: nowrap;
-  -webkit-transition-property: all;
-  -moz-transition-property: all;
-  -o-transition-property: all;
-  transition-property: all;
-  -webkit-transition-duration: 0.2s;
-  -moz-transition-duration: 0.2s;
-  -o-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  -webkit-transition-timing-function: ease-out;
-  -moz-transition-timing-function: ease-out;
-  -o-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
-.c100:after {
-  position: absolute;
-  top: 0.08em;
-  left: 0.08em;
-  display: block;
-  content: " ";
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  background-color: whitesmoke;
-  width: 0.84em;
-  height: 0.84em;
-  -webkit-transition-property: all;
-  -moz-transition-property: all;
-  -o-transition-property: all;
-  transition-property: all;
-  -webkit-transition-duration: 0.2s;
-  -moz-transition-duration: 0.2s;
-  -o-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  -webkit-transition-timing-function: ease-in;
-  -moz-transition-timing-function: ease-in;
-  -o-transition-timing-function: ease-in;
-  transition-timing-function: ease-in;
-}
-.c100 .slice {
-  position: absolute;
-  width: 1em;
-  height: 1em;
-  clip: rect(0em, 1em, 1em, 0.5em);
-}
-.c100.p33 .bar {
-  -webkit-transform: rotate(118.8deg);
-  -moz-transform: rotate(118.8deg);
-  -ms-transform: rotate(118.8deg);
-  -o-transform: rotate(118.8deg);
-  transform: rotate(118.8deg);
-}
-.c100.p66 .bar {
-  -webkit-transform: rotate(237.6deg);
-  -moz-transform: rotate(237.6deg);
-  -ms-transform: rotate(237.6deg);
-  -o-transform: rotate(237.6deg);
-  transform: rotate(237.6deg);
-}
-.c100.p100 .bar {
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  transform: rotate(360deg);
-}
-.c100.dark {
-  background-color: #e4e4e4;
-}
-.c100.dark > img {
-  color: #e4e4e4;
-}
-.c100.dark:after {
-  background-color: #e4e4e4;
+.lesson-type {
+  color: color($colors, a100) !important;
 }

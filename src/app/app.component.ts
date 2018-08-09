@@ -8,7 +8,7 @@ import { OnboardingPage } from "../pages/onboarding/onboarding";
 import { ContextProvider } from "../providers/context/context";
 import { EmitterProvider } from "../providers/emitter/emitter";
 import { ContextEvent } from "../models/common/event/ContextEvent";
-import {ErrorPage} from "../pages/error/error";
+import { ErrorPage } from "../pages/error/error";
 
 @Component({
   templateUrl: 'app.html'

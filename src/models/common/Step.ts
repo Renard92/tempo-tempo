@@ -1,12 +1,12 @@
-import {IStep} from "./IStep";
+import {Stepable} from "./Stepable";
 
-export class Step implements IStep {
+export class Step implements Stepable {
 
   private _total: number;
   private _current: number;
 
   constructor (
-    parameters: IStep = <IStep>{}
+    parameters: Stepable = <Stepable>{}
   ) {
     this._total = parameters.total || 1;
     this._current = parameters.current || 0;

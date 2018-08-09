@@ -21,8 +21,11 @@ import { ContextProvider } from '../providers/context/context';
 import { CountDownResourceComponent } from "../components/count-down-resource/count-down-resource";
 import { EmitterProvider } from '../providers/emitter/emitter';
 import { ErrorPage } from "../pages/error/error";
-import {LessonComponent} from "../components/lesson/lesson";
+import { LessonComponent } from "../components/lesson/lesson";
 import { AchievementProvider } from '../providers/achievement/achievement';
+import { TheoryPage } from "../pages/theory/theory";
+import { ExercisePage } from "../pages/exercise/exercise";
+import { ExamPage } from "../pages/exam/exam";
 
 @NgModule({
   declarations: [
@@ -35,6 +38,9 @@ import { AchievementProvider } from '../providers/achievement/achievement';
     SplashPage,
     ErrorPage,
     TabsPage,
+    TheoryPage,
+    ExercisePage,
+    ExamPage,
     CountDownResourceComponent,
     LessonComponent
   ],
@@ -54,6 +60,9 @@ import { AchievementProvider } from '../providers/achievement/achievement';
     OnboardingPage,
     SplashPage,
     ErrorPage,
+    TheoryPage,
+    ExercisePage,
+    ExamPage,
     TabsPage,
     CountDownResourceComponent,
     LessonComponent

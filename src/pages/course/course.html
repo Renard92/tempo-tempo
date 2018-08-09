@@ -16,13 +16,18 @@
 </ion-header>
 
 
-<ion-content padding>
+<!--<ion-content padding *ngFor="let chapter of chapters">-->
 
-  <div *ngFor="let chapter of chapters">
-    <div> {{ chapter.title }} </div>
-    <div *ngFor="let lesson of chapter.lessons">
-      <lesson (tap)="presentLesson(lesson)" [lesson]="lesson"></lesson>
-    </div>
+  <!--<div *ngFor="let lesson of chapter.lessons">-->
+    <!--<lesson (tap)="presentLesson(lesson)" [lesson]="lesson"></lesson>-->
+  <!--</div>-->
+
+<!--</ion-content>-->
+
+<ion-content class="cards-bg" *ngFor="let chapter of chapters">
+
+  <div *ngFor="let lesson of chapter.lessons">
+    <lesson [lesson]="lesson"></lesson>
   </div>
 
 </ion-content>
