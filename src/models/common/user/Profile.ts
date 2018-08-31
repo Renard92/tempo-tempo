@@ -9,7 +9,7 @@ export class Profile {
     public firstName?: string,
     public lastName?: string,
     public username?: string,
-    public language: Language = Language.En,
+    public language: Language = Language.English,
     public subscription: Subscription = new Subscription(),
     public rank: Rank = new Rank(),
     public achievements: Array<Achievement> = []

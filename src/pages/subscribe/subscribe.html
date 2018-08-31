@@ -1,0 +1,18 @@
+<!--
+  Generated template for the SubscribePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+
+  <img [src]="info.image" class="slide-image"/>
+  <h2 class="slide-title" [innerHTML]="info.title"></h2>
+  <p [innerHTML]="info.description"></p>
+
+  <ion-buttons>
+    <button ion-button round large full (tap)="subscribe()">Subscribe</button>
+    <button ion-button round clear full (tap)="close()">Maybe later</button>
+  </ion-buttons>
+
+</ion-content>

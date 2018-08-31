@@ -1,28 +1,34 @@
-export class CountDownResource {
+export class Resource {
 
-  static DEFAULT_RECOVERY: number = 300; /* 5 minutes */
-  static DEFAULT_TOTAL: number = 8;
+  static DEFAULT_RECOVERY_TIME: number = 300; /* 5 minutes */
+  static DEFAULT_TOTAL_RESOURCES: number = 3;
 
   private _interval_id: number;
   private _timeout_id: number;
-
   private _timer_date: Date;
 
   constructor (
-    public recovery: number = CountDownResource.DEFAULT_RECOVERY, /* in seconds */
-    public remaining: number = CountDownResource.DEFAULT_TOTAL,
-    public total: number = CountDownResource.DEFAULT_TOTAL,
+    public recovery: number = Resource.DEFAULT_RECOVERY_TIME, /* in seconds */
+    public remaining: number = Resource.DEFAULT_TOTAL_RESOURCES,
+    public total: number = Resource.DEFAULT_TOTAL_RESOURCES,
     public timer?: number,
     public running: boolean = false
   ) {
     this._timer_date = new Date();
   }
 
+  /**
+   * Recovers every resources
+   */
   recover () {
     this.stop();
     this.remaining = this.total;
   }
 
+  /**
+   * Removes one resource
+   * @return {boolean}
+   */
   remove (): boolean {
     if (this.remaining > 0) {
       this.remaining--;
@@ -32,11 +38,15 @@ export class CountDownResource {
     return false;
   }
 
-  add (resetTimer: boolean = true) {
+  /**
+   * Adds one resource
+   * @param andResetTimer
+   */
+  add (andResetTimer: boolean = true) {
     if (this.remaining < this.total) {
       this.remaining++;
       if (this.remaining < this.total) {
-        if (resetTimer) {
+        if (andResetTimer) {
           this.stop();
         }
         this.start();
@@ -46,7 +56,10 @@ export class CountDownResource {
     }
   }
 
-  start () {
+  /**
+   * Starts the timer
+   */
+  private start () {
     if (!this.running && this.remaining < this.total) {
       this.timer = this.recovery;
 
@@ -61,7 +74,10 @@ export class CountDownResource {
     this.running = true;
   }
 
-  stop () {
+  /**
+   * Stops the timer
+   */
+  private stop () {
     if (this.running) {
       clearInterval(this._interval_id);
       clearTimeout(this._timeout_id);
@@ -71,9 +87,9 @@ export class CountDownResource {
   }
 
   /**
-   * @return timer {number} (mm:ss)
+   * @return timer {string} (mm:ss)
    */
-  getFormattedTimer() {
+  toString() {
     if (!this.timer) {
       return null;
     }

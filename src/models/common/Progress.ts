@@ -1,15 +1,18 @@
-import {Stepable} from "./Stepable";
+import {Progressable} from "./Progressable";
 
-export class Step implements Stepable {
+export class Progress implements Progressable {
+
+  static DEFAULT_TOTAL: 1;
+  static DEFAULT_CURRENT: 0;
 
   private _total: number;
   private _current: number;
 
   constructor (
-    parameters: Stepable = <Stepable>{}
+    parameters: Progressable = <Progressable>{}
   ) {
-    this._total = parameters.total || 1;
-    this._current = parameters.current || 0;
+    this._total = parameters.total || Progress.DEFAULT_TOTAL;
+    this._current = parameters.current || Progress.DEFAULT_CURRENT;
   }
 
   set total(total: number) {

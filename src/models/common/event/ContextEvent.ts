@@ -1,8 +1,8 @@
-export class ContextEvent {
-  static PREFIX: string = 'context.';
+import {Event} from "./Event";
 
-  static INIT_SUCCESS: string           = ContextEvent.PREFIX + 'init.success';
-  static INIT_ERROR: string             = ContextEvent.PREFIX + 'init.error';
+export class ContextEvent extends Event {
+  static PREFIX: string = Event.PREFIX + 'CONTEXT.';
 
-  static PRESENT_RESOURCE_ALERT: string = ContextEvent.PREFIX + 'present.resource-alert';
+  static INIT_SUCCESS: string = ContextEvent.PREFIX + 'INIT_SUCCESS';
+  static INIT_FAILURE: string = ContextEvent.PREFIX + 'INIT_FAILURE';
 }

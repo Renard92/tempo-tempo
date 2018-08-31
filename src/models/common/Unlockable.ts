@@ -1,3 +1,3 @@
-export interface Unlockable{
-  unlocked: boolean;
+export interface Unlockable {
+  isUnlocked(): boolean;
 }

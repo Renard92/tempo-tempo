@@ -28,7 +28,7 @@ export class SplashPage {
       this.viewCtrl.dismiss();
     });
 
-    EmitterProvider.get(ContextEvent.INIT_ERROR).subscribe(() => {
+    EmitterProvider.get(ContextEvent.INIT_FAILURE).subscribe(() => {
       setTimeout(() => {
         this.contextProvider.init();
       }, 1000);

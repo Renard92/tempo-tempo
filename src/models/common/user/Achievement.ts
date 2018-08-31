@@ -1,4 +1,4 @@
-import {Step} from "../Step";
+import {Progress} from "../Progress";
 import {Unlockable} from "../Unlockable";
 
 export class Achievement implements Unlockable {
@@ -7,8 +7,9 @@ export class Achievement implements Unlockable {
     public id?: string,
     public title?: string,
     public description?: string,
-    public unlocked: boolean = false,
-    public step: Step = new Step(),
+    public category?: string,
+    public progress: Progress = new Progress(),
+    public achievements: Array<Achievement> = []
   ) {
   }
 
@@ -27,14 +28,23 @@ export class Achievement implements Unlockable {
     return this;
   }
 
-  withUnlocked(unlocked: boolean) {
-    this.unlocked = unlocked;
+  withCategory(category: string) {
+    this.category = category;
     return this;
   }
 
-  withStep(step: Step) {
-    this.step = step;
+  withProgress(progress: Progress) {
+    this.progress = progress;
     return this;
+  }
+
+  withAchievements(achievements: Array<Achievement>) {
+    this.achievements = achievements;
+    return this;
+  }
+
+  isUnlocked () {
+    return this.progress.isDone();
   }
 
 }

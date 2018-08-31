@@ -34,7 +34,7 @@ export class TheoryPage {
   }
 
   understood () {
-    this.theory.step.up();
+    this.theory.progress.up();
 
     this.viewCtrl.dismiss();
   }

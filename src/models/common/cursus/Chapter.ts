@@ -31,4 +31,8 @@ export class Chapter implements Unlockable {
     return this;
   }
 
+  isUnlocked () {
+    return this.unlocked;
+  }
+
 }

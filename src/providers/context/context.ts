@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LogMethod } from "../../decorators/LogMethod";
-import { CountDownResource } from "../../models/common/cursus/CountDownResource";
+import { Resource } from "../../models/common/cursus/Resource";
 import { EmitterProvider } from "../emitter/emitter";
 import { ContextEvent } from "../../models/common/event/ContextEvent";
 import { User } from "../../models/common/User";
@@ -17,11 +17,11 @@ export class ContextProvider {
   private _loaded: boolean = false;
 
   private _user: User;
-  private _countDownResource: CountDownResource;
+  private _resource: Resource;
 
   constructor(public http: HttpClient) {
     this._user = new User();
-    this._countDownResource = new CountDownResource();
+    this._resource = new Resource();
   }
 
   @LogMethod()
@@ -36,15 +36,15 @@ export class ContextProvider {
         this._loaded = true;
         EmitterProvider.get(ContextEvent.INIT_SUCCESS).emit({});
       }).catch(reason => {
-        EmitterProvider.get(ContextEvent.INIT_ERROR).emit(reason);
+        EmitterProvider.get(ContextEvent.INIT_FAILURE).emit(reason);
       });
     }
   }
 
   @LogMethod()
-  loadCountDownResource(): Promise<CountDownResource> {
+  loadCountDownResource(): Promise<Resource> {
     return new Promise((resolve) => {
-      resolve(this._countDownResource);
+      resolve(this._resource);
     });
   }
 
@@ -63,8 +63,8 @@ export class ContextProvider {
     return this._user;
   }
 
-  getCountDownResource(): CountDownResource {
-    return this._countDownResource;
+  getResource(): Resource {
+    return this._resource;
   }
 
 }

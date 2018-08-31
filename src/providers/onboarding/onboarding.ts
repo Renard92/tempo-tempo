@@ -12,32 +12,34 @@ import { LogMethod } from "../../decorators/LogMethod";
 @Injectable()
 export class OnboardingProvider {
 
-  sliders: Array<Slider>;
+  _sliders: Array<Slider>;
 
   constructor(public http: HttpClient) {
-    this.sliders = new Array<Slider>(
-      {
-        title: "Welcome to Tempo Tempo!",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis faucibus libero, non congue purus lacinia posuere.",
-        image: "assets/imgs/onboarding/slider-img-1.svg",
-      },
-      {
-        title: "Invite your friends",
-        description: "Suspendisse finibus, neque id luctus commodo, lacus ante consequat justo, nec laoreet est eros malesuada enim.",
-        image: "assets/imgs/onboarding/slider-img-2.svg",
-      },
-      {
-        title: "Sky is the limit",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis faucibus libero, non congue purus lacinia posuere.",
-        image: "assets/imgs/onboarding/slider-img-3.svg",
-      }
+    this._sliders = [];
+    this._sliders.push(
+      new Slider()
+        .withTitle("Welcome to Tempo Tempo!")
+        .withDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis faucibus libero, non congue purus lacinia posuere.")
+        .withImage("assets/imgs/onboarding/slider-img-1.svg")
+    );
+    this._sliders.push(
+      new Slider()
+        .withTitle("Invite your friends")
+        .withDescription("Suspendisse finibus, neque id luctus commodo, lacus ante consequat justo, nec laoreet est eros malesuada enim.")
+        .withImage("assets/imgs/onboarding/slider-img-2.svg")
+    );
+    this._sliders.push(
+      new Slider()
+        .withTitle("Sky is the limit")
+        .withDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis faucibus libero, non congue purus lacinia posuere.")
+        .withImage("assets/imgs/onboarding/slider-img-3.svg")
     );
   }
 
   @LogMethod()
   getSliders(): Promise<any> {
     return new Promise((resolve) => {
-      resolve(this.sliders);
+      resolve(this._sliders);
     });
   }
 }

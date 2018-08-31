@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ContextProvider } from "../../providers/context/context";
-import { CountDownResource } from "../../models/common/cursus/CountDownResource";
+import { Resource } from "../../models/common/cursus/Resource";
 
 /**
  * Generated class for the CountDownResourceComponent component.
@@ -14,13 +14,13 @@ import { CountDownResource } from "../../models/common/cursus/CountDownResource"
 })
 export class CountDownResourceComponent {
 
-  resource: CountDownResource;
+  resource: Resource;
 
   constructor(public contextProvider: ContextProvider) {
   }
 
   ngOnInit() {
-    this.resource = this.contextProvider.getCountDownResource();
+    this.resource = this.contextProvider.getResource();
   }
 
 }

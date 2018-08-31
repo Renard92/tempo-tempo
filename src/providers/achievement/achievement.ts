@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LogMethod } from "../../decorators/LogMethod";
 import { Achievement } from "../../models/common/user/Achievement";
-import { Step } from "../../models/common/Step";
+import { Progress } from "../../models/common/Progress";
 
 /*
  Generated class for the CursusProvider provider.
@@ -13,40 +13,64 @@ import { Step } from "../../models/common/Step";
 @Injectable()
 export class AchievementProvider {
 
-  achievements: Array<Achievement>;
+  _achievements: Array<Achievement>;
 
   constructor(public http: HttpClient) {
-    this.achievements = [];
-    this.achievements.push(
+    this._achievements = [];
+    this._achievements.push(
       new Achievement()
         .withId('1')
         .withTitle('1 Exam')
         .withDescription('Lorem ipsum.')
-        .withUnlocked(true)
-        .withStep(
-          new Step()
+        .withCategory('Course')
+        .withProgress(
+          new Progress()
             .withTotal(1)
             .withCurrent(1)
         )
     );
-    this.achievements.push(
+    this._achievements.push(
       new Achievement()
         .withId('10')
         .withTitle('10 Exams')
         .withDescription('Lorem ipsum.')
-        .withUnlocked(false)
-        .withStep(
-          new Step()
+        .withCategory('Course')
+        .withProgress(
+          new Progress()
             .withTotal(10)
             .withCurrent(1)
         )
-    )
+    );
+    this._achievements.push(
+      new Achievement()
+        .withId('first-chapter')
+        .withTitle('First chapter')
+        .withDescription('Finish the first chapter.')
+        .withCategory('Course')
+        .withProgress(
+          new Progress()
+            .withTotal(1)
+            .withCurrent(1)
+        )
+        .withAchievements([
+          new Achievement()
+            .withId('notes-exam')
+            .withTitle('Notes exam')
+            .withDescription('Lorem ipsum.')
+            .withCategory('Course')
+            .withProgress(
+              new Progress()
+                .withTotal(1)
+                .withCurrent(1)
+            )
+        ])
+    );
   }
 
   @LogMethod()
   getAchievements(): Promise<Array<Achievement>> {
     return new Promise((resolve) => {
-      resolve(this.achievements);
+      resolve(this._achievements);
     });
   }
 

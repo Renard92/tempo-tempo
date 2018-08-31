@@ -26,6 +26,8 @@ import { AchievementProvider } from '../providers/achievement/achievement';
 import { TheoryPage } from "../pages/theory/theory";
 import { ExercisePage } from "../pages/exercise/exercise";
 import { ExamPage } from "../pages/exam/exam";
+import { SubscribePage } from "../pages/subscribe/subscribe";
+import { MarketProvider } from '../providers/market/market';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { ExamPage } from "../pages/exam/exam";
     TheoryPage,
     ExercisePage,
     ExamPage,
+    SubscribePage,
     CountDownResourceComponent,
     LessonComponent
   ],
@@ -63,6 +66,7 @@ import { ExamPage } from "../pages/exam/exam";
     TheoryPage,
     ExercisePage,
     ExamPage,
+    SubscribePage,
     TabsPage,
     CountDownResourceComponent,
     LessonComponent
@@ -76,7 +80,8 @@ import { ExamPage } from "../pages/exam/exam";
     ContextProvider,
     EmitterProvider,
     AchievementProvider,
-    AchievementProvider
+    AchievementProvider,
+    MarketProvider
   ]
 })
 export class AppModule {}

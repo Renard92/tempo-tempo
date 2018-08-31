@@ -1,4 +1,4 @@
-import {Step} from "../Step";
+import {Progress} from "../Progress";
 import {Unlockable} from "../Unlockable";
 import {LessonType} from "./LessonType";
 
@@ -10,8 +10,7 @@ export class Lesson implements Unlockable {
   private _type: LessonType;
   private _imageSrc: string;
   private _level: number = 1;
-  private _unlocked: boolean = false;
-  private _step: Step;
+  private _progress: Progress;
 
   constructor (
     id?: string,
@@ -19,16 +18,14 @@ export class Lesson implements Unlockable {
     description?: string,
     imageSrc?: string,
     level: number = 1,
-    unlocked: boolean = false,
-    step: Step = new Step()
+    progress: Progress = new Progress()
   ) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.imageSrc = imageSrc;
     this.level = level;
-    this.unlocked = unlocked;
-    this.step = step;
+    this.progress = progress;
 
     this.type = LessonType.Lesson;
   }
@@ -111,30 +108,21 @@ export class Lesson implements Unlockable {
     return this;
   }
 
-  set step(step: Step) {
-    this._step = step;
+  set progress(progress: Progress) {
+    this._progress = progress;
   }
 
-  get step() {
-    return this._step;
+  get progress() {
+    return this._progress;
   }
 
-  withStep(step: Step): Lesson {
-    this.step = step;
+  withProgress(progress: Progress): Lesson {
+    this.progress = progress;
     return this;
   }
 
-  set unlocked(unlocked: boolean) {
-    this._unlocked = unlocked;
-  }
-
-  get unlocked() {
-    return this._unlocked;
-  }
-
-  withUnlocked(unlocked: boolean): Lesson {
-    this.unlocked = unlocked;
-    return this;
+  isUnlocked () {
+    return this.progress.isDone();
   }
 
 }
