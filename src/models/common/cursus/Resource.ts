@@ -7,14 +7,90 @@ export class Resource {
   private _timeout_id: number;
   private _timer_date: Date;
 
-  constructor (
-    public recovery: number = Resource.DEFAULT_RECOVERY_TIME, /* in seconds */
-    public remaining: number = Resource.DEFAULT_TOTAL_RESOURCES,
-    public total: number = Resource.DEFAULT_TOTAL_RESOURCES,
-    public timer?: number,
-    public running: boolean = false
-  ) {
+  private _recovery: number = Resource.DEFAULT_RECOVERY_TIME; /* in seconds */
+  private _remaining: number = Resource.DEFAULT_TOTAL_RESOURCES;
+  private _total: number = Resource.DEFAULT_TOTAL_RESOURCES;
+  private _timer: number;
+  private _running: boolean = false;
+
+  constructor (resource: Resource = <Resource>{}) {
+    this
+      .withTotal(resource.total || Resource.DEFAULT_TOTAL_RESOURCES)
+      .withRemaining(resource.remaining || Resource.DEFAULT_TOTAL_RESOURCES)
+      .withRecovery(resource.recovery || Resource.DEFAULT_RECOVERY_TIME)
+      .withTimer(resource.timer || Resource.DEFAULT_RECOVERY_TIME)
+      .withRunning(resource.running || false);
+
     this._timer_date = new Date();
+
+    if (this.running) {
+      this.start();
+    }
+  }
+
+  get recovery(): number {
+    return this._recovery;
+  }
+
+  set recovery(value: number) {
+    this._recovery = value;
+  }
+
+  get remaining(): number {
+    return this._remaining;
+  }
+
+  set remaining(value: number) {
+    this._remaining = value;
+  }
+
+  get total(): number {
+    return this._total;
+  }
+
+  set total(value: number) {
+    this._total = value;
+  }
+
+  get timer(): number {
+    return this._timer;
+  }
+
+  set timer(value: number) {
+    this._timer = value;
+  }
+
+  get running(): boolean {
+    return this._running;
+  }
+
+  set running(value: boolean) {
+    this._running = value;
+  }
+
+  withTimer (value: number) {
+    this.timer = value;
+    return this;
+  }
+
+  withRecovery (value: number) {
+    this.recovery = value;
+    return this;
+  }
+
+  withRemaining (value: number) {
+    this.remaining = value;
+    return this;
+  }
+
+  withTotal (value: number) {
+    this.total = value;
+    return this;
+  }
+
+  withRunning (value: boolean) {
+    this.running = value;
+    return this;
   }
 
   /**

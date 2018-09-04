@@ -5,10 +5,10 @@ export class Exam extends Lesson {
 
   static DEFAULT_IMAGE_SRC = 'assets/icon/lesson/default-exam-icon.svg';
 
-  constructor () {
-    super();
+  constructor (lesson: Lesson = <Lesson>{}) {
+    super(lesson);
     this.type = LessonType.Exam;
-    this.imageSrc = this.imageSrc || Exam.DEFAULT_IMAGE_SRC;
+    this.image = this.image || Exam.DEFAULT_IMAGE_SRC;
   }
 
 }

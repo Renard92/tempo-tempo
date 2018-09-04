@@ -2,10 +2,43 @@ import {Profile} from "./user/Profile";
 
 export class User {
 
-  constructor (
-    public id?: string,
-    public profile: Profile = new Profile()
-  ) {
+  private _id: string;
+  private _profile: Profile = new Profile();
+
+  constructor (user: User = <User>{}) {
+    this
+      .withId(user.id)
+      .withProfile(new Profile(user.profile));
+  }
+
+  public static from (user: User): User {
+    return new User(user);
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
+  }
+
+  get profile(): Profile {
+    return this._profile;
+  }
+
+  set profile(value: Profile) {
+    this._profile = value;
+  }
+
+  withId (id: string): User {
+    this.id = id;
+    return this;
+  }
+
+  withProfile (profile: Profile): User {
+    this.profile = profile;
+    return this;
   }
 
 }

@@ -1,6 +1,9 @@
 import {Progress} from "../Progress";
 import {Unlockable} from "../Unlockable";
 import {LessonType} from "./LessonType";
+import {Theory} from "./Theory";
+import {Exercise} from "./Exercise";
+import {Exam} from "./Exam";
 
 export class Lesson implements Unlockable {
 
@@ -8,26 +11,32 @@ export class Lesson implements Unlockable {
   private _title: string;
   private _description: string;
   private _type: LessonType;
-  private _imageSrc: string;
+  private _image: string;
   private _level: number = 1;
-  private _progress: Progress;
+  private _progress: Progress = new Progress();
 
-  constructor (
-    id?: string,
-    title?: string,
-    description?: string,
-    imageSrc?: string,
-    level: number = 1,
-    progress: Progress = new Progress()
-  ) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.imageSrc = imageSrc;
-    this.level = level;
-    this.progress = progress;
+  constructor (lesson: Lesson = <Lesson>{}) {
+    this
+      .withId(lesson.id)
+      .withTitle(lesson.title)
+      .withDescription(lesson.description)
+      .withImage(lesson.image)
+      .withLevel(lesson.level)
+      .withProgress(new Progress(lesson.progress))
+      .withType(LessonType.Lesson);
+  }
 
-    this.type = LessonType.Lesson;
+  public static from (lesson: Lesson = <Lesson>{}): Lesson {
+    switch (lesson.type) {
+      case LessonType.Theory:
+        return new Theory(lesson);
+      case LessonType.Exercise:
+        return new Exercise(lesson);
+      case LessonType.Exam:
+        return new Exam(lesson);
+      default:
+        return new Lesson(lesson);
+    }
   }
 
   set id(id: string) {
@@ -69,16 +78,16 @@ export class Lesson implements Unlockable {
     return this;
   }
 
-  set imageSrc(imageSrc: string) {
-    this._imageSrc = imageSrc;
+  set image(imageSrc: string) {
+    this._image = imageSrc;
   }
 
-  get imageSrc() {
-    return this._imageSrc;
+  get image() {
+    return this._image;
   }
 
-  withImageSrc(imageSrc: string): Lesson {
-    this.imageSrc = imageSrc;
+  withImage(image: string): Lesson {
+    this.image = image;
     return this;
   }
 

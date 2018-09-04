@@ -1,10 +1,42 @@
 export class Rank {
 
-  constructor (
-    public id?: string,
-    public title?: string,
-    public icon?: string
-  ) {
+  private _id: string;
+  private _title: string;
+  private _icon: string;
+
+  constructor (rank: Rank = <Rank>{}) {
+    this
+      .withId(rank.id)
+      .withTitle(rank.title)
+      .withIcon(rank.icon);
+  }
+
+  public static from (rank: Rank): Rank {
+    return new Rank(rank);
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
+  }
+
+  get title(): string {
+    return this._title;
+  }
+
+  set title(value: string) {
+    this._title = value;
+  }
+
+  get icon(): string {
+    return this._icon;
+  }
+
+  set icon(value: string) {
+    this._icon = value;
   }
 
   withId(id: string): Rank {

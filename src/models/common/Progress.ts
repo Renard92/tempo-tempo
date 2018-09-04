@@ -2,17 +2,17 @@ import {Progressable} from "./Progressable";
 
 export class Progress implements Progressable {
 
-  static DEFAULT_TOTAL: 1;
-  static DEFAULT_CURRENT: 0;
+  private _total: number = 1;
+  private _current: number = 0;
 
-  private _total: number;
-  private _current: number;
+  constructor (progress: Progressable = <Progressable>{}) {
+    this
+      .withTotal(progress.total || 1)
+      .withCurrent(progress.current || 0);
+  }
 
-  constructor (
-    parameters: Progressable = <Progressable>{}
-  ) {
-    this._total = parameters.total || Progress.DEFAULT_TOTAL;
-    this._current = parameters.current || Progress.DEFAULT_CURRENT;
+  public static from (progress: Progress): Progress {
+    return new Progress(progress);
   }
 
   set total(total: number) {

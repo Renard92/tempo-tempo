@@ -5,10 +5,10 @@ export class Theory extends Lesson {
 
   static DEFAULT_IMAGE_SRC = 'assets/icon/lesson/default-theory-icon.svg';
 
-  constructor () {
-    super();
+  constructor (lesson: Lesson = <Lesson>{}) {
+    super(lesson);
     this.type = LessonType.Theory;
-    this.imageSrc = this.imageSrc || Theory.DEFAULT_IMAGE_SRC;
+    this.image = this.image || Theory.DEFAULT_IMAGE_SRC;
   }
 
 }
