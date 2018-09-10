@@ -55,6 +55,11 @@ export class Progress implements Progressable {
     return this;
   }
 
+  reset() {
+    this.current = 0;
+    return this;
+  }
+
   isDone() {
     return this.current >= (this.total);
   }

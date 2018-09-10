@@ -1,9 +1,6 @@
 import {Progress} from "../Progress";
 import {Unlockable} from "../Unlockable";
 import {LessonType} from "./LessonType";
-import {Theory} from "./Theory";
-import {Exercise} from "./Exercise";
-import {Exam} from "./Exam";
 
 export class Lesson implements Unlockable {
 
@@ -12,6 +9,7 @@ export class Lesson implements Unlockable {
   private _description: string;
   private _type: LessonType;
   private _image: string;
+  private _unlocked: string;
   private _level: number = 1;
   private _progress: Progress = new Progress();
 
@@ -27,16 +25,7 @@ export class Lesson implements Unlockable {
   }
 
   public static from (lesson: Lesson = <Lesson>{}): Lesson {
-    switch (lesson.type) {
-      case LessonType.Theory:
-        return new Theory(lesson);
-      case LessonType.Exercise:
-        return new Exercise(lesson);
-      case LessonType.Exam:
-        return new Exam(lesson);
-      default:
-        return new Lesson(lesson);
-    }
+    return new Lesson(lesson);
   }
 
   set id(id: string) {
@@ -128,6 +117,14 @@ export class Lesson implements Unlockable {
   withProgress(progress: Progress): Lesson {
     this.progress = progress;
     return this;
+  }
+
+  get unlocked(): string {
+    return this._unlocked;
+  }
+
+  set unlocked(value: string) {
+    this._unlocked = value;
   }
 
   isUnlocked () {

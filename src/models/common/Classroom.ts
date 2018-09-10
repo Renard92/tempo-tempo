@@ -4,8 +4,8 @@ import {Teacher} from "./user/Teacher";
 
 export class Classroom {
 
-  private _id?: string;
-  private _name?: string;
+  private _id: string;
+  private _name: string;
   private _description?: string;
   private _creator: User = new User();
   private _teachers: Array<Teacher> = [];
