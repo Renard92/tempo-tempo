@@ -5,8 +5,6 @@ import { Resource } from "../../models/common/cursus/Resource";
 import { EmitterProvider } from "../emitter/emitter";
 import { ContextEvent } from "../../models/common/event/ContextEvent";
 import { User } from "../../models/common/User";
-import {Exception} from "../../models/common/exception/Exception";
-import {ContextException} from "../../models/common/exception/ContextException";
 
 /*
   Generated class for the ContextProvider provider.
