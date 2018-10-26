@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LogMethod } from "../../decorators/LogMethod";
 import { Resource } from "../../models/common/cursus/Resource";
 import { EmitterProvider } from "../emitter/emitter";
 import { ContextEvent } from "../../models/common/event/ContextEvent";
 import { User } from "../../models/common/User";
+import {MeasureMethod} from "../../decorators/method/MeasureMethod";
+import {LogMethod} from "../../decorators/method/LogMethod";
 
 /*
   Generated class for the ContextProvider provider.
@@ -24,29 +25,35 @@ export class ContextProvider {
     this._resource = new Resource();
   }
 
-  @LogMethod()
+  @LogMethod
+  @MeasureMethod
   init() {
     if (this._loaded) {
       EmitterProvider.get(ContextEvent.INIT_SUCCESS).emit({});
     } else {
-      Promise.all([
-        this.loadUser(),
-        this.loadCountDownResource()
-      ]).then(() => {
-        this._loaded = true;
-        EmitterProvider.get(ContextEvent.INIT_SUCCESS).emit({});
-      }).catch(reason => {
-        EmitterProvider.get(ContextEvent.INIT_FAILURE).emit(reason);
-      });
+      Promise
+        .all([
+          this.loadUser(),
+          this.loadCountDownResource()
+        ])
+        .then(() => {
+          this._loaded = true;
+          EmitterProvider.get(ContextEvent.INIT_SUCCESS).emit({});
+        })
+        .catch((reason) => {
+          EmitterProvider.get(ContextEvent.INIT_FAILURE).emit(reason);
+        });
     }
   }
 
-  @LogMethod()
+  @LogMethod
+  @MeasureMethod
   loadCountDownResource(): Promise<Resource> {
     return new Promise((resolve) => resolve(this._resource));
   }
 
-  @LogMethod()
+  @LogMethod
+  @MeasureMethod
   loadUser(): Promise<User> {
     return new Promise((resolve) => resolve(this._user));
   }

@@ -1,49 +1,16 @@
-export class Product {
+import {Item} from "./Item";
+import {Currency} from "./Currency";
 
-  private _code: string;
-  private _name: string;
-  private _description: string;
-  private _image: string;
+export class Product extends Item {
+
   private _price: number = 0;
-  private _bought: boolean = false;
+  private _currency: Currency;
 
   constructor (product: Product = <Product>{}) {
+    super(product);
     this
-      .withCode(product.code)
-      .withName(product.name)
-      .withDescription(product.description)
-      .withImage(product.image)
       .withPrice(product.price)
-      .withBought(product.bought)
-  }
-
-  public static from (product: Product): Product {
-    return new Product(product);
-
-  }
-
-  get name(): string {
-    return this._name;
-  }
-
-  set name(value: string) {
-    this._name = value;
-  }
-
-  get description(): string {
-    return this._description;
-  }
-
-  set description(value: string) {
-    this._description = value;
-  }
-
-  get image(): string {
-    return this._image;
-  }
-
-  set image(value: string) {
-    this._image = value;
+      .withCurrency(product.currency);
   }
 
   get price(): number {
@@ -54,49 +21,21 @@ export class Product {
     this._price = value;
   }
 
-  get bought(): boolean {
-    return this._bought;
+  get currency(): Currency {
+    return this._currency;
   }
 
-  set bought(value: boolean) {
-    this._bought = value;
+  set currency(value: Currency) {
+    this._currency = value;
   }
 
-  get code(): string {
-    return this._code;
-  }
-
-  set code(value: string) {
-    this._code = value;
-  }
-
-  withCode (code: string): Product {
-    this.code = code;
-    return this;
-  }
-
-  withName (name: string): Product {
-    this.name = name;
-    return this;
-  }
-
-  withDescription (description: string): Product {
-    this.description = description;
-    return this;
-  }
-
-  withImage (image: string): Product {
-    this.image = image;
-    return this;
-  }
-
-  withPrice (price: number): Product {
+  withPrice (price: number) {
     this.price = price;
     return this;
   }
 
-  withBought (bought: boolean): Product {
-    this.bought = bought;
+  withCurrency (currency: Currency) {
+    this.currency = currency;
     return this;
   }
 

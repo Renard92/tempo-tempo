@@ -2,6 +2,7 @@ import {Achievement} from "./Achievement";
 import {Language} from "./Language";
 import {Subscription} from "./Subscription";
 import {Rank} from "./Rank";
+import {Bag} from "./Bag";
 
 export class Profile {
 
@@ -12,20 +13,18 @@ export class Profile {
   private _subscription: Subscription = new Subscription();
   private _rank: Rank = new Rank();
   private _achievements: Array<Achievement> = [];
+  private _bag: Bag;
 
   constructor (profile: Profile = <Profile>{}) {
     this
       .withFirstName(profile.firstName)
       .withLastName(profile.lastName)
       .withUsername(profile.username)
-      .withLanguage(profile.language || Language.English)
+      .withLanguage(profile.language)
       .withRank(new Rank(profile.rank))
       .withSubscription(new Subscription(profile.subscription))
-      .withAchievements((profile.achievements || []).map(Achievement.from));
-  }
-
-  public static from (profile: Profile): Profile {
-    return new Profile(profile);
+      .withAchievements((profile.achievements || []).map((data) => new Achievement(data)))
+      .withBag(new Bag(profile.bag));
   }
 
   get firstName(): string {
@@ -57,7 +56,7 @@ export class Profile {
   }
 
   set language(value: Language) {
-    this._language = value;
+    this._language = value || Language.English;
   }
 
   get subscription(): Subscription {
@@ -82,6 +81,14 @@ export class Profile {
 
   set achievements(value: Array<Achievement>) {
     this._achievements = value;
+  }
+
+  get bag(): Bag {
+    return this._bag;
+  }
+
+  set bag(value: Bag) {
+    this._bag = value;
   }
 
   withFirstName(firstName: string): Profile {
@@ -116,6 +123,11 @@ export class Profile {
 
   withAchievements(achievements: Array<Achievement>): Profile {
     this.achievements = achievements;
+    return this;
+  }
+
+  withBag(bag: Bag = <Bag>{}): Profile {
+    this.bag = bag;
     return this;
   }
 

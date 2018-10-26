@@ -26,7 +26,7 @@ export class LessonComponent {
   @Input()
   lesson: Lesson;
 
-  constructor(
+  constructor (
     public contextProvider: ContextProvider,
     public navCtrl: NavController,
     public modalCtrl: ModalController
@@ -36,9 +36,12 @@ export class LessonComponent {
   ngOnInit() {
   }
 
-  presentLesson(lesson: Lesson) {
+  presentLesson (lesson: Lesson) {
     let resource: Resource = this.contextProvider.getResource();
-    if (resource.remove()) {
+
+    if (lesson.type === LessonType.Theory && lesson.progress.isCompleted()) {
+      this.presentTheory(lesson);
+    } else if (resource.remove()) {
       switch (lesson.type) {
         case LessonType.Theory:
           this.presentTheory(lesson);
@@ -55,31 +58,31 @@ export class LessonComponent {
     }
   }
 
-  presentTheory(lesson: Lesson) {
+  presentTheory (lesson: Lesson) {
     let page = this.modalCtrl.create(TheoryPage, lesson);
     page.present();
     return page;
   }
 
-  presentExercise(lesson: Lesson) {
+  presentExercise (lesson: Lesson) {
     let page = this.modalCtrl.create(ExercisePage, lesson);
     page.present();
     return page;
   }
 
-  presentExam(lesson: Lesson) {
+  presentExam (lesson: Lesson) {
     let page = this.modalCtrl.create(ExamPage, lesson);
     page.present();
     return page;
   }
 
-  presentSubscribe() {
+  presentSubscribe () {
     let page = this.modalCtrl.create(SubscribePage);
     page.present();
     return page;
   }
 
-  levelCls(lesson: Lesson): string {
+  levelCls (lesson: Lesson): string {
     return LessonComponent.PREFIX_LEVEL_CLS + lesson.level;
   }
 

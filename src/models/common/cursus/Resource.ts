@@ -18,7 +18,7 @@ export class Resource {
       .withTotal(resource.total || Resource.DEFAULT_TOTAL_RESOURCES)
       .withRemaining(resource.remaining || Resource.DEFAULT_TOTAL_RESOURCES)
       .withRecovery(resource.recovery || Resource.DEFAULT_RECOVERY_TIME)
-      .withTimer(resource.timer || Resource.DEFAULT_RECOVERY_TIME)
+      .withTimer(resource.timer || 0)
       .withRunning(resource.running || false);
 
     this._timer_date = new Date();

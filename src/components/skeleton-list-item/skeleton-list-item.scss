@@ -1,0 +1,61 @@
+.skeleton-list-item {
+
+  $skeleton-color: rgba(165, 165, 165, 0.35);
+
+  .item-icon, .item-title, .item-line, .item-button {
+    background-color: $skeleton-color;
+    opacity: 0.5;
+    height: 1em;
+    margin-top: 10px;
+    animation: animate-skeleton 3s infinite ease-in-out;
+  }
+
+  .width-90 {
+    width: 90%;
+  }
+
+  .width-80 {
+    width: 80%;
+  }
+
+  .width-70 {
+    width: 70%;
+  }
+
+  .width-60 {
+    width: 60%;
+  }
+
+  .width-50 {
+    width: 50%;
+  }
+
+  .width-40 {
+    width: 40%;
+  }
+
+  .width-30 {
+    width: 30%;
+  }
+
+  .width-20 {
+    width: 20%;
+  }
+
+  .width-10 {
+    width: 10%;
+  }
+
+}
+
+@keyframes animate-skeleton {
+  0% {
+    background-color: rgba(165, 165, 165, 0.15)
+  }
+  50% {
+    background-color: rgba(165, 165, 165, 0.45)
+  }
+  100% {
+    background-color: rgba(165, 165, 165, 0.15)
+  }
+}

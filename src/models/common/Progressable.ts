@@ -5,5 +5,5 @@ export interface Progressable {
   up(): Progressable;
   down(): Progressable;
   reset(): Progressable;
-  isDone(): boolean;
+  isCompleted(): boolean;
 }

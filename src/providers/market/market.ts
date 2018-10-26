@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Product} from "../../models/common/market/Product";
-import {LogMethod} from "../../decorators/LogMethod";
+import {LootBox} from "../../models/common/market/LootBox";
+import {LogMethod} from "../../decorators/method/LogMethod";
+import {MeasureMethod} from "../../decorators/method/MeasureMethod";
 
 /*
   Generated class for the MarketProvider provider.
@@ -12,39 +13,58 @@ import {LogMethod} from "../../decorators/LogMethod";
 @Injectable()
 export class MarketProvider {
 
-  private _products: Array<Product>;
+  private _boxes: Array<any>;
 
-  constructor(public http: HttpClient) {
-    this._products = [
-      new Product()
-        .withCode('lorem')
-        .withName('Lorem')
-        .withDescription('Lorem.')
-        .withImage('')
-        .withPrice(0)
-        .withBought(true),
-      new Product()
-        .withCode('ipsum')
-        .withName('Ipsum')
-        .withDescription('Ipsum.')
-        .withImage('')
-        .withPrice(0)
-        .withBought(false),
-      new Product()
-        .withCode('lorem-ipsum')
-        .withName('Lorem ipsum')
-        .withDescription('Lorem ipsum.')
-        .withImage('')
-        .withPrice(10)
-        .withBought(false)
-    ];
+  constructor (public http: HttpClient) {}
+
+  @LogMethod
+  getBoxes(): Promise<Array<LootBox>> {
+    if (this._boxes) {
+      return new Promise((resolve) => {
+        resolve(this._boxes);
+      });
+    }
+    return this.loadBoxes();
   }
 
-  @LogMethod()
-  getProducts(): Promise<any> {
-    return new Promise((resolve) => {
-      resolve(this._products);
-    });
+  @LogMethod
+  @MeasureMethod
+  loadBoxes(): Promise<Array<LootBox>> {
+    return new Promise((resolve) => setTimeout(() => {
+      this._boxes = [
+        new LootBox()
+          .withPrice(0)
+          .withCode('lorem')
+          .withName('Lorem')
+          .withDescription('Lorem.')
+          .withImage('assets/icon/market/default-present-icon.svg'),
+        new LootBox()
+          .withPrice(20)
+          .withCode('lorem-ipsum-long')
+          .withName('Lorem ipsum long')
+          .withDescription('Lorem ipsum.')
+          .withImage('assets/icon/market/default-present-icon.svg'),
+        new LootBox()
+          .withPrice(5)
+          .withCode('ipsum')
+          .withName('Ipsum')
+          .withDescription('Ipsum.')
+          .withImage('assets/icon/market/default-present-icon.svg'),
+        new LootBox()
+          .withPrice(10)
+          .withCode('lorem-ipsum')
+          .withName('Lorem ipsum')
+          .withDescription('Lorem ipsum.')
+          .withImage('assets/icon/market/default-present-icon.svg'),
+        new LootBox()
+          .withPrice(15)
+          .withCode('lorem-ipsum-very-long')
+          .withName('Lorem ipsum very long')
+          .withDescription('Lorem ipsum.')
+          .withImage('assets/icon/market/default-present-icon.svg')
+      ];
+      resolve(this._boxes);
+    }, 2500));
   }
 
 }

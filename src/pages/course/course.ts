@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chapter } from "../../models/common/cursus/Chapter";
 import { CursusProvider } from "../../providers/cursus/cursus";
-import {ContextProvider} from "../../providers/context/context";
+import {Skeleton} from "../../models/design/Skeleton";
 
 /**
  * Generated class for the CoursePage page.
@@ -18,14 +18,15 @@ import {ContextProvider} from "../../providers/context/context";
 })
 export class CoursePage {
 
+  skeleton: Skeleton;
+
   chapters: Chapter[];
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public viewCtrl: ViewController,
-    public cursusProvider: CursusProvider,
-    public contextProvider: ContextProvider) {
+    public cursusProvider: CursusProvider) {
+    this.skeleton = new Skeleton().withPart('chapters');
   }
 
   ionViewDidLoad() {

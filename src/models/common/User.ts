@@ -11,10 +11,6 @@ export class User {
       .withProfile(new Profile(user.profile));
   }
 
-  public static from (user: User): User {
-    return new User(user);
-  }
-
   get id(): string {
     return this._id;
   }

@@ -15,19 +15,20 @@
 
 </ion-header>
 
+<ion-content class="cards-bg">
 
-<!--<ion-content padding *ngFor="let chapter of chapters">-->
+  <div *ngIf='chapters'>
+    <div *ngFor="let chapter of chapters">
+      <div *ngFor="let lesson of chapter.lessons">
+        <lesson [lesson]="lesson"></lesson>
+      </div>
+    </div>
+  </div>
 
-  <!--<div *ngFor="let lesson of chapter.lessons">-->
-    <!--<lesson (tap)="presentLesson(lesson)" [lesson]="lesson"></lesson>-->
-  <!--</div>-->
-
-<!--</ion-content>-->
-
-<ion-content class="cards-bg" *ngFor="let chapter of chapters">
-
-  <div *ngFor="let lesson of chapter.lessons">
-    <lesson [lesson]="lesson"></lesson>
+  <div *ngIf='!chapters'>
+    <div *ngFor="let bone of skeleton.parts.chapters">
+      <skeleton-card></skeleton-card>
+    </div>
   </div>
 
 </ion-content>

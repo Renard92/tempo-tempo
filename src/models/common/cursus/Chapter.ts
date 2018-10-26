@@ -1,5 +1,6 @@
 import {Lesson} from "./Lesson";
 import {Unlockable} from "../Unlockable";
+import {Progress} from "../Progress";
 
 export class Chapter implements Unlockable {
 
@@ -7,17 +8,15 @@ export class Chapter implements Unlockable {
   private _title: string;
   private _unlocked: boolean = false;
   private _lessons: Array<Lesson> = [];
+  private _progress: Progress;
 
   constructor (chapter: Chapter = <Chapter>{}) {
     this
       .withId(chapter.id)
       .withTitle(chapter.title)
       .withUnlocked(chapter.unlocked)
-      .withLessons((chapter.lessons || []).map(Lesson.from));
-  }
-
-  public static from (chapter: Chapter) {
-    return new Chapter(chapter);
+      .withProgress(chapter.progress)
+      .withLessons((chapter.lessons || []).map((data) => new Lesson(data)));
   }
 
   get id(): string {
@@ -52,6 +51,14 @@ export class Chapter implements Unlockable {
     this._lessons = value;
   }
 
+  get progress(): Progress {
+    return this._progress;
+  }
+
+  set progress(value: Progress) {
+    this._progress = value;
+  }
+
   withId(id: string) {
     this.id = id;
     return this;
@@ -72,8 +79,9 @@ export class Chapter implements Unlockable {
     return this;
   }
 
-  isUnlocked () {
-    return this.unlocked;
+  withProgress(progress: Progress) {
+    this.progress = progress;
+    return this;
   }
 
 }

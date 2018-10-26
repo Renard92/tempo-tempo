@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {MarketProvider} from "../../providers/market/market";
+import {LootBox} from "../../models/common/market/LootBox";
+import {Skeleton} from "../../models/design/Skeleton";
 
 /**
  * Generated class for the MarketPage page.
@@ -15,11 +18,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MarketPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  skeleton: Skeleton;
+
+  boxes: LootBox[];
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public marketProvider: MarketProvider) {
+    this.skeleton = new Skeleton().withPart('boxes');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MarketPage');
+    this.marketProvider
+      .getBoxes()
+      .then((boxes) => {
+        this.boxes = boxes;
+      });
   }
+
 
 }

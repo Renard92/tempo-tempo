@@ -9,7 +9,7 @@ export class Lesson implements Unlockable {
   private _description: string;
   private _type: LessonType;
   private _image: string;
-  private _unlocked: string;
+  private _unlocked: boolean;
   private _level: number = 1;
   private _progress: Progress = new Progress();
 
@@ -22,10 +22,6 @@ export class Lesson implements Unlockable {
       .withLevel(lesson.level)
       .withProgress(new Progress(lesson.progress))
       .withType(LessonType.Lesson);
-  }
-
-  public static from (lesson: Lesson = <Lesson>{}): Lesson {
-    return new Lesson(lesson);
   }
 
   set id(id: string) {
@@ -119,16 +115,12 @@ export class Lesson implements Unlockable {
     return this;
   }
 
-  get unlocked(): string {
+  get unlocked(): boolean {
     return this._unlocked;
   }
 
-  set unlocked(value: string) {
+  set unlocked(value: boolean) {
     this._unlocked = value;
-  }
-
-  isUnlocked () {
-    return this.progress.isDone();
   }
 
 }

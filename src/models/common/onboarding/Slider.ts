@@ -11,10 +11,6 @@ export class Slider {
       .withImage(slider.image);
   }
 
-  public static from (slider: Slider): Slider {
-    return new Slider(slider);
-  }
-
   get title(): string {
     return this._title;
   }

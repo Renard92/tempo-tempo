@@ -12,11 +12,7 @@ export class Subscription {
       .withId(subscription.id)
       .withName(subscription.name)
       .withDescription(subscription.description)
-      .withAuthorities(subscription.authorities || []);
-  }
-
-  public static from (subscription: Subscription): Subscription {
-    return new Subscription(subscription);
+      .withAuthorities(subscription.authorities);
   }
 
   get id(): string {
@@ -48,7 +44,7 @@ export class Subscription {
   }
 
   set authorities(value: Array<Authority>) {
-    this._authorities = value;
+    this._authorities = value || [];
   }
 
   withId(id: string): Subscription {

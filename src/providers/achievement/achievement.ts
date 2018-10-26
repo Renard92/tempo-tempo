@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LogMethod } from "../../decorators/LogMethod";
 import { Achievement } from "../../models/common/user/Achievement";
 import { Progress } from "../../models/common/Progress";
+import {LogMethod} from "../../decorators/method/LogMethod";
 
 /*
  Generated class for the CursusProvider provider.
@@ -16,8 +16,7 @@ export class AchievementProvider {
   _achievements: Array<Achievement>;
 
   constructor(public http: HttpClient) {
-    this._achievements = [];
-    this._achievements.push(
+    this._achievements = [
       new Achievement()
         .withId('1')
         .withTitle('1 Exam')
@@ -27,9 +26,7 @@ export class AchievementProvider {
           new Progress()
             .withTotal(1)
             .withCurrent(1)
-        )
-    );
-    this._achievements.push(
+        ),
       new Achievement()
         .withId('10')
         .withTitle('10 Exams')
@@ -39,9 +36,7 @@ export class AchievementProvider {
           new Progress()
             .withTotal(10)
             .withCurrent(1)
-        )
-    );
-    this._achievements.push(
+        ),
       new Achievement()
         .withId('first-chapter')
         .withTitle('First chapter')
@@ -64,10 +59,10 @@ export class AchievementProvider {
                 .withCurrent(1)
             )
         ])
-    );
+    ];
   }
 
-  @LogMethod()
+  @LogMethod
   getAchievements(): Promise<Array<Achievement>> {
     return new Promise((resolve) => {
       resolve(this._achievements);

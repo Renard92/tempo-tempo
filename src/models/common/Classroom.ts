@@ -17,12 +17,8 @@ export class Classroom {
       .withName(classroom.name)
       .withDescription(classroom.description)
       .withCreator(new User(classroom.creator))
-      .withStudents((classroom.students || []).map(Student.from))
-      .withTeachers((classroom.teachers || []).map(Teacher.from));
-  }
-
-  public static from (classroom: Classroom): Classroom {
-    return new Classroom(classroom);
+      .withStudents((classroom.students || []).map((data) => new Student(data)))
+      .withTeachers((classroom.teachers || []).map((data) => new Teacher(data)));
   }
 
   get id(): string {

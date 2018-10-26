@@ -11,10 +11,6 @@ export class Rank {
       .withIcon(rank.icon);
   }
 
-  public static from (rank: Rank): Rank {
-    return new Rank(rank);
-  }
-
   get id(): string {
     return this._id;
   }

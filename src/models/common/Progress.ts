@@ -11,10 +11,6 @@ export class Progress implements Progressable {
       .withCurrent(progress.current || 0);
   }
 
-  public static from (progress: Progress): Progress {
-    return new Progress(progress);
-  }
-
   set total(total: number) {
     this._total = total;
   }
@@ -60,8 +56,8 @@ export class Progress implements Progressable {
     return this;
   }
 
-  isDone() {
-    return this.current >= (this.total);
+  isCompleted() {
+    return this.current >= this.total;
   }
 
 }

@@ -17,11 +17,7 @@ export class Achievement implements Unlockable {
       .withDescription(achievement.description)
       .withCategory(achievement.category)
       .withProgress(new Progress(achievement.progress))
-      .withAchievements((achievement.achievements || []).map(Achievement.from))
-  }
-
-  public static from (achievement: Achievement): Achievement {
-    return new Achievement(achievement);
+      .withAchievements((achievement.achievements || []).map((data) => new Achievement(data)));
   }
 
   get id(): string {
@@ -102,8 +98,8 @@ export class Achievement implements Unlockable {
     return this;
   }
 
-  isUnlocked () {
-    return this.progress.isDone();
+  get unlocked(): boolean {
+    return this.progress.isCompleted();
   }
 
 }
