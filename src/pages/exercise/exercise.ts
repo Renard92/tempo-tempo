@@ -18,7 +18,7 @@ export class ExercisePage {
 
   exercise: Exercise;
 
-  constructor(
+  constructor (
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Slider } from "../../models/common/onboarding/Slider";
 import {LogMethod} from "../../decorators/method/LogMethod";
+import {MeasureMethod} from "../../decorators/method/MeasureMethod";
 
 /*
   Generated class for the OnboardingProvider provider.
@@ -14,27 +15,29 @@ export class OnboardingProvider {
 
   _sliders: Array<Slider>;
 
-  constructor(public http: HttpClient) {
-    this._sliders = [
-      new Slider()
-        .withTitle("Welcome to Tempo Tempo!")
-        .withDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis faucibus libero, non congue purus lacinia posuere.")
-        .withImage("assets/imgs/onboarding/slider-img-1.svg"),
-      new Slider()
-        .withTitle("Invite your friends")
-        .withDescription("Suspendisse finibus, neque id luctus commodo, lacus ante consequat justo, nec laoreet est eros malesuada enim.")
-        .withImage("assets/imgs/onboarding/slider-img-2.svg"),
-      new Slider()
-        .withTitle("Sky is the limit")
-        .withDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis faucibus libero, non congue purus lacinia posuere.")
-        .withImage("assets/imgs/onboarding/slider-img-3.svg")
-    ];
-  }
+  constructor (public http: HttpClient) {}
 
   @LogMethod
   getSliders(): Promise<Array<Slider>> {
+    if (this._sliders) {
+      return new Promise((resolve) => {
+        resolve(this._sliders);
+      });
+    }
+    return this.loadSliders();
+  }
+
+  @LogMethod
+  @MeasureMethod
+  loadSliders(): Promise<Array<Slider>> {
     return new Promise((resolve) => {
-      resolve(this._sliders);
+      this.http.get('assets/data/onboarding/sliders.json')
+        .subscribe((json: Array<Slider>) => {
+          resolve(
+            this._sliders = json
+              .map((data) => new Slider(data))
+          );
+        });
     });
   }
 }

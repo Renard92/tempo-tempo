@@ -1,7 +1,12 @@
-<div class="error-page">
-  <div class="error-page__content">
-    <div class="Aligner-item Aligner-item--top"></div>
-    <img class="error-page__icon" src="assets/icon/erroricon.svg">
-    <div class="Aligner-item Aligner-item--bottom"></div>
-  </div>
-</div>
+<ion-content padding class="error-page error-page__content">
+
+  <img src="assets/icon/erroricon.svg">
+
+  <h2>Oh no!</h2>
+  <p>Something went wrong..</p>
+
+  <ion-buttons>
+    <button ion-button large outline (tap)="home()">Home</button>
+  </ion-buttons>
+
+</ion-content>

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "first-chapter",
+    "title": "The first chapter",
+    "description": "Finish the first chapter.",
+    "category": "Course",
+    "progress": {
+      "current": 1,
+      "total": 1
+    }
+  },
+  {
+    "id": "1-exam",
+    "title": "1 Exam",
+    "description": "Pass 1 exam.",
+    "category": "Course",
+    "progress": {
+      "current": 1,
+      "total": 1
+    }
+  },
+  {
+    "id": "5-exam",
+    "title": "5 Exam",
+    "description": "Pass 5 exam.",
+    "category": "Course",
+    "progress": {
+      "current": 1,
+      "total": 5
+    }
+  },
+  {
+    "id": "10-exam",
+    "title": "10 Exam",
+    "description": "Pass 10 exam.",
+    "category": "Course",
+    "progress": {
+      "current": 1,
+      "total": 10
+    }
+  },
+  {
+    "id": "1-exercise",
+    "title": "1 Exercise",
+    "description": "Pass 1 exercise.",
+    "category": "Course",
+    "progress": {
+      "current": 1,
+      "total": 1
+    }
+  },
+  {
+    "id": "5-exercises",
+    "title": "5 Exercises",
+    "description": "Pass 5 exercises.",
+    "category": "Course",
+    "progress": {
+      "current": 3,
+      "total": 5
+    }
+  },
+  {
+    "id": "10-exercises",
+    "title": "10 Exercises",
+    "description": "Pass 10 exercises.",
+    "category": "Course",
+    "progress": {
+      "current": 3,
+      "total": 10
+    }
+  },
+  {
+    "id": "50-exercises",
+    "title": "50 Exercises",
+    "description": "Pass 50 exercises.",
+    "category": "Course",
+    "progress": {
+      "current": 3,
+      "total": 50
+    }
+  },
+  {
+    "id": "100-exercises",
+    "title": "100 Exercises",
+    "description": "Pass 100 exercises.",
+    "category": "Course",
+    "progress": {
+      "current": 3,
+      "total": 100
+    }
+  }
+]

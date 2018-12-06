@@ -4,6 +4,22 @@ import {LessonType} from "./LessonType";
 
 export class Lesson implements Unlockable {
 
+  static DEFAULT_EXERCISE_IMAGE: string = 'assets/icon/lesson/default-exercise-icon.svg';
+  static DEFAULT_THEORY_IMAGE: string   = 'assets/icon/lesson/default-theory-icon.svg';
+  static DEFAULT_EXAM_IMAGE: string     = 'assets/icon/lesson/default-exam-icon.svg';
+
+  public static getDefaultImageByLessonType (lessonType: LessonType = LessonType.Lesson): string {
+    switch (lessonType) {
+      case LessonType.Theory:
+        return Lesson.DEFAULT_THEORY_IMAGE;
+      case LessonType.Exam:
+        return Lesson.DEFAULT_EXAM_IMAGE;
+      case LessonType.Exercise:
+      default:
+        return Lesson.DEFAULT_EXERCISE_IMAGE;
+    }
+  }
+
   private _id: string;
   private _title: string;
   private _description: string;
@@ -18,10 +34,10 @@ export class Lesson implements Unlockable {
       .withId(lesson.id)
       .withTitle(lesson.title)
       .withDescription(lesson.description)
-      .withImage(lesson.image)
       .withLevel(lesson.level)
       .withProgress(new Progress(lesson.progress))
-      .withType(LessonType.Lesson);
+      .withType(lesson.type || LessonType.Lesson)
+      .withImage(lesson.image || Lesson.getDefaultImageByLessonType(lesson.type));
   }
 
   set id(id: string) {

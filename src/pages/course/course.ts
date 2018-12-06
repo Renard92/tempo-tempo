@@ -18,18 +18,23 @@ import {Skeleton} from "../../models/design/Skeleton";
 })
 export class CoursePage {
 
-  skeleton: Skeleton;
+  skeleton: Skeleton = new Skeleton();
 
   chapters: Chapter[];
 
-  constructor(
+  constructor (
     public navCtrl: NavController,
     public navParams: NavParams,
-    public cursusProvider: CursusProvider) {
-    this.skeleton = new Skeleton().withPart('chapters');
+    public cursusProvider: CursusProvider
+  ) {
+    this.skeleton.withPart('chapters');
   }
 
   ionViewDidLoad() {
+    this.loadChapters();
+  }
+
+  loadChapters(): void {
     this.cursusProvider
       .getChapters()
       .then((chapters) => {

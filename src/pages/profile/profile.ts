@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Achievement} from "../../models/common/user/Achievement";
+import {AchievementProvider} from "../../providers/achievement/achievement";
+import {Skeleton} from "../../models/design/Skeleton";
 
 /**
  * Generated class for the ProfilePage page.
@@ -15,11 +18,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  skeleton: Skeleton = new Skeleton();
+
+  achievements: Achievement[];
+
+  constructor (
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public achievementProvider: AchievementProvider
+  ) {
+    this.skeleton.withPart('achievements', 10);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+  async ionViewDidLoad() {
+    this.loadAchievements();
+  }
+
+  loadAchievements(): void {
+    this.achievementProvider
+      .getAchievements()
+      .then((achievements) => {
+        this.achievements = achievements;
+      });
   }
 
 }

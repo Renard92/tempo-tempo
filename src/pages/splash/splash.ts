@@ -19,7 +19,10 @@ import {EmitterProvider} from "../../providers/emitter/emitter";
 })
 export class SplashPage {
 
-  constructor(public viewCtrl: ViewController, public splashScreen: SplashScreen, public contextProvider: ContextProvider) {
+  constructor(
+    public viewCtrl: ViewController,
+    public splashScreen: SplashScreen,
+    public contextProvider: ContextProvider) {
   }
 
   ionViewDidEnter() {

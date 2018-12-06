@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 /**
  * Generated class for the SkeletonListItemComponent component.
@@ -11,6 +11,8 @@ import { Component } from '@angular/core';
   templateUrl: 'skeleton-list-item.html'
 })
 export class SkeletonListItemComponent {
+
+  @Input() withAvatar: boolean = false;
 
   constructor () {
   }

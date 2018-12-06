@@ -2,7 +2,7 @@ import {NgModule, ErrorHandler} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from "@angular/http";
 import {HttpClientModule} from "@angular/common/http";
-import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import {IonicApp, IonicModule} from 'ionic-angular';
 import {MyApp} from './app.component';
 
 import {TabsPage} from '../pages/tabs/tabs';
@@ -31,6 +31,7 @@ import {MarketProvider} from '../providers/market/market';
 import {SanitizeHtmlPipe} from "../pipes/html/SanitizeHtmlPipe";
 import {SkeletonCardComponent} from "../components/skeleton-card/skeleton-card";
 import {SkeletonListItemComponent} from "../components/skeleton-list-item/skeleton-list-item";
+import {TempoErrorHandler} from "../models/error/TempoErrorHandler";
 
 @NgModule({
   declarations: [
@@ -82,7 +83,7 @@ import {SkeletonListItemComponent} from "../components/skeleton-list-item/skelet
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: ErrorHandler, useClass: TempoErrorHandler},
     OnboardingProvider,
     CursusProvider,
     ContextProvider,

@@ -1,12 +1,13 @@
 import {Progress} from "../Progress";
 import {Unlockable} from "../Unlockable";
+import {AchievementCategory} from "./AchievementCategory";
 
 export class Achievement implements Unlockable {
 
   private _id: string;
   private _title: string;
   private _description: string;
-  private _category: string;
+  private _category: AchievementCategory;
   private _progress: Progress = new Progress();
   private _achievements: Array<Achievement> = [];
 
@@ -44,11 +45,11 @@ export class Achievement implements Unlockable {
     this._description = value;
   }
 
-  get category(): string {
+  get category(): AchievementCategory {
     return this._category;
   }
 
-  set category(value: string) {
+  set category(value: AchievementCategory) {
     this._category = value;
   }
 
@@ -83,7 +84,7 @@ export class Achievement implements Unlockable {
     return this;
   }
 
-  withCategory(category: string) {
+  withCategory(category: AchievementCategory) {
     this.category = category;
     return this;
   }

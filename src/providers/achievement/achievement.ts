@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Achievement } from "../../models/common/user/Achievement";
-import { Progress } from "../../models/common/Progress";
 import {LogMethod} from "../../decorators/method/LogMethod";
+import {MeasureMethod} from "../../decorators/method/MeasureMethod";
 
 /*
  Generated class for the CursusProvider provider.
@@ -15,58 +15,39 @@ export class AchievementProvider {
 
   _achievements: Array<Achievement>;
 
-  constructor(public http: HttpClient) {
-    this._achievements = [
-      new Achievement()
-        .withId('1')
-        .withTitle('1 Exam')
-        .withDescription('Lorem ipsum.')
-        .withCategory('Course')
-        .withProgress(
-          new Progress()
-            .withTotal(1)
-            .withCurrent(1)
-        ),
-      new Achievement()
-        .withId('10')
-        .withTitle('10 Exams')
-        .withDescription('Lorem ipsum.')
-        .withCategory('Course')
-        .withProgress(
-          new Progress()
-            .withTotal(10)
-            .withCurrent(1)
-        ),
-      new Achievement()
-        .withId('first-chapter')
-        .withTitle('First chapter')
-        .withDescription('Finish the first chapter.')
-        .withCategory('Course')
-        .withProgress(
-          new Progress()
-            .withTotal(1)
-            .withCurrent(1)
-        )
-        .withAchievements([
-          new Achievement()
-            .withId('notes-exam')
-            .withTitle('Notes exam')
-            .withDescription('Lorem ipsum.')
-            .withCategory('Course')
-            .withProgress(
-              new Progress()
-                .withTotal(1)
-                .withCurrent(1)
-            )
-        ])
-    ];
-  }
+  constructor(public http: HttpClient) {}
 
   @LogMethod
   getAchievements(): Promise<Array<Achievement>> {
-    return new Promise((resolve) => {
-      resolve(this._achievements);
-    });
+    if (this._achievements) {
+      return new Promise((resolve) => {
+        resolve(this._achievements);
+      });
+    }
+    return this.loadAchievements();
+  }
+
+  @LogMethod
+  @MeasureMethod
+  loadAchievements(): Promise<Array<Achievement>> {
+    return new Promise((resolve) => setTimeout(() => {
+      this.http.get('assets/data/achievement/achievements.json')
+        .subscribe((json: Array<Achievement>) => {
+          resolve(
+            this._achievements = json
+              .map(data => new Achievement(data))
+              .sort(AchievementProvider.sortAchievementsByProgress)
+          );
+        });
+    }, 1500));
+  }
+
+  /**
+   * @param a {Achievement}
+   * @param b {Achievement}
+   */
+  private static sortAchievementsByProgress (a, b): number {
+    return b.progress.percentage - a.progress.percentage;
   }
 
 }

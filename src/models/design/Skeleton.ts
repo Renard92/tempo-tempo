@@ -2,6 +2,8 @@ import {LogMethod} from "../../decorators/method/LogMethod";
 
 export class Skeleton {
 
+  public static DEFAULT_BONES_NUMBER: number = 5;
+
   private _parts: { [parts: string]: Array<any> } = {};
 
   constructor (skeleton: Skeleton = <Skeleton>{}) {
@@ -16,13 +18,13 @@ export class Skeleton {
     this._parts = value || {};
   }
 
-  @LogMethod
-  withPart (part: string, bones: number = 5): Skeleton {
+  withPart (part: string, bones: number = Skeleton.DEFAULT_BONES_NUMBER): Skeleton {
     this.addPart(part, bones);
     return this;
   }
 
-  addPart (part: string, bones: number = 5) {
+  @LogMethod
+  addPart (part: string, bones: number = Skeleton.DEFAULT_BONES_NUMBER) {
     this.parts[part] = new Array(bones);
   }
 

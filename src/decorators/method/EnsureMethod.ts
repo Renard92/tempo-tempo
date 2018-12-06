@@ -17,12 +17,10 @@ export function EnsureMethod (condition: any) {
     const method = descriptor.value;
 
     descriptor.value = function (...args) {
-
       /* Executes the function to check out the condition with arguments OR verifies if every arguments match the condition */
       if ((condition instanceof Function && !condition.apply(condition, arguments)) || args.some(arg => condition != arg)) {
         console.error(`${target.constructor.name}.${propertyKey}(${args}): arguments do not match the condition (${condition}).`);
       }
-
       return method.apply(this, args);
     };
 

@@ -30,41 +30,24 @@ export class MarketProvider {
   @LogMethod
   @MeasureMethod
   loadBoxes(): Promise<Array<LootBox>> {
-    return new Promise((resolve) => setTimeout(() => {
-      this._boxes = [
-        new LootBox()
-          .withPrice(0)
-          .withCode('lorem')
-          .withName('Lorem')
-          .withDescription('Lorem.')
-          .withImage('assets/icon/market/default-present-icon.svg'),
-        new LootBox()
-          .withPrice(20)
-          .withCode('lorem-ipsum-long')
-          .withName('Lorem ipsum long')
-          .withDescription('Lorem ipsum.')
-          .withImage('assets/icon/market/default-present-icon.svg'),
-        new LootBox()
-          .withPrice(5)
-          .withCode('ipsum')
-          .withName('Ipsum')
-          .withDescription('Ipsum.')
-          .withImage('assets/icon/market/default-present-icon.svg'),
-        new LootBox()
-          .withPrice(10)
-          .withCode('lorem-ipsum')
-          .withName('Lorem ipsum')
-          .withDescription('Lorem ipsum.')
-          .withImage('assets/icon/market/default-present-icon.svg'),
-        new LootBox()
-          .withPrice(15)
-          .withCode('lorem-ipsum-very-long')
-          .withName('Lorem ipsum very long')
-          .withDescription('Lorem ipsum.')
-          .withImage('assets/icon/market/default-present-icon.svg')
-      ];
-      resolve(this._boxes);
-    }, 2500));
+    return new Promise((resolve) => {
+      this.http.get('assets/data/market/loot-boxes.json')
+        .subscribe((json: Array<LootBox>) => {
+          resolve(
+            this._boxes = json
+              .map((data) => new LootBox(data))
+              .sort(MarketProvider.sortLootBoxesByPrice)
+          );
+        });
+    });
+  }
+
+  /**
+   * @param a {LootBox}
+   * @param b {LootBox}
+   */
+  private static sortLootBoxesByPrice (a, b): number {
+    return a.price - b.price;
   }
 
 }

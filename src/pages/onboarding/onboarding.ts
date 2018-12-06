@@ -18,19 +18,28 @@ import { Slider } from "../../models/common/onboarding/Slider";
 export class OnboardingPage {
   slides: Slider[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public onboardingProvider: OnboardingProvider) {
+  constructor (
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    public onboardingProvider: OnboardingProvider
+  ) {
   }
 
   ionViewDidLoad() {
+    this.loadSliders();
+  }
+
+  skip () {
+    this.viewCtrl.dismiss();
+  }
+
+  loadSliders(): void {
     this.onboardingProvider
       .getSliders()
       .then((sliders) => {
         this.slides = sliders;
       });
-  }
-
-  skip () {
-    this.viewCtrl.dismiss();
   }
 
 }

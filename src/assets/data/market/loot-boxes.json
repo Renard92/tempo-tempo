@@ -1,0 +1,37 @@
+[
+  {
+    "price": 0,
+    "code": "lorem",
+    "name": "Lorem",
+    "description": "Lorem.",
+    "image": "assets/icon/market/default-present-icon.svg"
+  },
+  {
+    "price": 5,
+    "code": "ipsum",
+    "name": "Ipsum",
+    "description": "Ipsum.",
+    "image": "assets/icon/market/default-present-icon.svg"
+  },
+  {
+    "price": 10,
+    "code": "lorem-ipsum",
+    "name": "Lorem Ipsum",
+    "description": "Lorem Ipsum.",
+    "image": "assets/icon/market/default-present-icon.svg"
+  },
+  {
+    "price": 15,
+    "code": "lorem-ipsum-long",
+    "name": "Lorem Ipsum Long",
+    "description": "Lorem Ipsum Long.",
+    "image": "assets/icon/market/default-present-icon.svg"
+  },
+  {
+    "price": 25,
+    "code": "lorem-ipsum-very-long",
+    "name": "Lorem Ipsum Very Long",
+    "description": "Lorem Ipsum Very Long.",
+    "image": "assets/icon/market/default-present-icon.svg"
+  }
+]

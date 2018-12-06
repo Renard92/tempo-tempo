@@ -41,7 +41,7 @@
   </ion-list>
 
   <ion-list *ngIf="!boxes">
-    <skeleton-list-item *ngFor="let box of skeleton.parts.boxes">
+    <skeleton-list-item *ngFor="let box of skeleton.parts.boxes" [withAvatar]="true">
     </skeleton-list-item>
   </ion-list>
 

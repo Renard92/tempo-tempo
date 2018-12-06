@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Welcome to Tempo Tempo!",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis faucibus libero, non congue purus lacinia posuere.",
+    "image": "assets/imgs/onboarding/slider-img-1.svg"
+  },
+  {
+    "title": "Invite your friends",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis faucibus libero, non congue purus lacinia posuere.",
+    "image": "assets/imgs/onboarding/slider-img-2.svg"
+  },
+  {
+    "title": "Sky is the limit",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sagittis faucibus libero, non congue purus lacinia posuere.",
+    "image": "assets/imgs/onboarding/slider-img-3.svg"
+  }
+]

@@ -15,11 +15,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ErrorPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  error: any;
+
+  constructor (
+    public navCtrl: NavController,
+    public navParams: NavParams
+  ) {
+    this.error = this.navParams.data;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ErrorPage');
+  }
+
+  home() {
+    window.location.reload();
   }
 
 }

@@ -13,6 +13,30 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <ion-list-header>
+    Achievements
+  </ion-list-header>
+
+  <ion-item-divider color="light">Course</ion-item-divider>
+
+  <ion-list *ngIf="achievements">
+
+    <ion-item *ngFor="let achievement of achievements">
+      <h2>{{achievement.title}}</h2>
+      <p>{{achievement.description}}</p>
+      <ion-note *ngIf="!achievement.unlocked" item-end>
+        {{achievement.progress.current}} / {{achievement.progress.total}}
+      </ion-note>
+      <ion-icon *ngIf="achievement.unlocked" name='checkmark' item-end color="success"></ion-icon>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list *ngIf="!achievements">
+    <skeleton-list-item *ngFor="let achievement of skeleton.parts.achievements">
+    </skeleton-list-item>
+  </ion-list>
 
 </ion-content>

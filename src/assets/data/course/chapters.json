@@ -1,0 +1,64 @@
+[
+  {
+    "id": "chapter-1",
+    "title": "Chapter 1",
+    "unlocked": true,
+    "lessons": [
+      {
+        "id": "chapter-1-theory-1",
+        "type": "Theory",
+        "title": "Music notes",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam orci justo, placerat ac aliquam eu, pulvinar sit amet ex.",
+        "level": 1,
+        "progress": {
+          "current": 0,
+          "total": 1
+        }
+      },
+      {
+        "id": "chapter-1-lesson-1",
+        "type": "Exercise",
+        "title": "Music notes : Exercise 1",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam orci justo, placerat ac aliquam eu, pulvinar sit amet ex.",
+        "level": 2,
+        "progress": {
+          "current": 0,
+          "total": 3
+        }
+      },
+      {
+        "id": "chapter-1-lesson-2",
+        "type": "Exercise",
+        "title": "Music notes : Exercise 2",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam orci justo, placerat ac aliquam eu, pulvinar sit amet ex.",
+        "level": 3,
+        "progress": {
+          "current": 0,
+          "total": 3
+        }
+      },
+      {
+        "id": "chapter-1-lesson-3",
+        "type": "Exercise",
+        "title": "Music notes : Exercise 3",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam orci justo, placerat ac aliquam eu, pulvinar sit amet ex.",
+        "level": 4,
+        "progress": {
+          "current": 0,
+          "total": 3
+        }
+      },
+      {
+        "id": "chapter-1-exam-1",
+        "type": "Exam",
+        "title": "Exam : Music notes",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam orci justo, placerat ac aliquam eu, pulvinar sit amet ex.",
+        "level": 5,
+        "progress": {
+          "current": 0,
+          "total": 3
+        }
+      }
+    ]
+  }
+]

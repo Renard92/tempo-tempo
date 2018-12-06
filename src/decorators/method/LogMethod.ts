@@ -10,9 +10,12 @@ export function LogMethod (target?: Object, propertyKey?: string, descriptor?: T
 
   descriptor.value = function (...args) {
     console.group(`${target.constructor.name}.${propertyKey}(${args}).`);
+
     const result = method.apply(this, args);
-    console.log('returns', result);
+    if (result)
+      console.log('returns', result);
     console.groupEnd();
+
     return result;
   };
 

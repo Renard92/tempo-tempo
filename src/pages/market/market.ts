@@ -18,24 +18,28 @@ import {Skeleton} from "../../models/design/Skeleton";
 })
 export class MarketPage {
 
-  skeleton: Skeleton;
+  skeleton: Skeleton = new Skeleton();
 
   boxes: LootBox[];
 
-  constructor(
+  constructor (
     public navCtrl: NavController,
     public navParams: NavParams,
-    public marketProvider: MarketProvider) {
-    this.skeleton = new Skeleton().withPart('boxes');
+    public marketProvider: MarketProvider
+  ) {
+    this.skeleton.withPart('boxes');
   }
 
   ionViewDidLoad() {
+    this.loadBoxes();
+  }
+
+  loadBoxes(): void {
     this.marketProvider
       .getBoxes()
       .then((boxes) => {
         this.boxes = boxes;
       });
   }
-
 
 }

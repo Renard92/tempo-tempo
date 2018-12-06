@@ -4,6 +4,7 @@ export class Progress implements Progressable {
 
   private _total: number = 1;
   private _current: number = 0;
+  private _percentage: number = 0;
 
   constructor (progress: Progressable = <Progressable>{}) {
     this
@@ -13,6 +14,7 @@ export class Progress implements Progressable {
 
   set total(total: number) {
     this._total = total;
+    this.updatePercentage();
   }
 
   get total() {
@@ -26,6 +28,7 @@ export class Progress implements Progressable {
 
   set current(current: number) {
     this._current = current;
+    this.updatePercentage();
   }
 
   get current() {
@@ -58,6 +61,14 @@ export class Progress implements Progressable {
 
   isCompleted() {
     return this.current >= this.total;
+  }
+
+  private updatePercentage(): number {
+    return this._percentage = Number.parseInt(((this.current / this.total) * 100).toFixed(0));
+  }
+
+  get percentage(): number {
+    return this._percentage;
   }
 
 }
