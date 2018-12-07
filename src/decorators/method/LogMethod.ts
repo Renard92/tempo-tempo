@@ -13,7 +13,7 @@ export function LogMethod (target?: Object, propertyKey?: string, descriptor?: T
 
     const result = method.apply(this, args);
     if (result)
-      console.log('returns', result);
+      console.log('%c returns', 'color: #cc540a', result);
     console.groupEnd();
 
     return result;

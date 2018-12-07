@@ -30,7 +30,7 @@ export class CoursePage {
     this.skeleton.withPart('chapters');
   }
 
-  ionViewDidLoad() {
+  async ionViewDidLoad() {
     this.loadChapters();
   }
 
