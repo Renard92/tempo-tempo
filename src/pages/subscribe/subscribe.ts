@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {ContextProvider} from "../../providers/context/context";
+import {CountDownResource} from "../../models/common/cursus/CountDownResource";
 
 /**
  * Generated class for the SubscribePage page.
@@ -38,10 +39,9 @@ export class SubscribePage {
     this.viewCtrl.dismiss();
   }
 
-  subscribe () {
-    this.contextProvider
-      .getResource()
-      .recover();
+  async subscribe() {
+    let resource: CountDownResource = await this.contextProvider.getCountDownResource();
+    resource.recover();
 
     this.viewCtrl.dismiss();
   }

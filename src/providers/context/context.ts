@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Resource } from "../../models/common/cursus/Resource";
+import { CountDownResource } from "../../models/common/cursus/CountDownResource";
 import { EmitterProvider } from "../emitter/emitter";
 import { ContextEvent } from "../../models/common/event/ContextEvent";
 import { User } from "../../models/common/User";
@@ -18,11 +18,10 @@ export class ContextProvider {
   private _loaded: boolean = false;
 
   private _user: User;
-  private _resource: Resource;
+  private _resource: CountDownResource;
 
   constructor(public http: HttpClient) {
     this._user = new User();
-    this._resource = new Resource();
   }
 
   @LogMethod
@@ -46,28 +45,50 @@ export class ContextProvider {
     }
   }
 
+  isLoaded(): boolean {
+    return this._loaded;
+  }
+
   @LogMethod
-  @MeasureMethod
-  loadCountDownResource(): Promise<Resource> {
-    return new Promise((resolve) => resolve(this._resource));
+  getUser(): Promise<User> {
+    if (this._user) {
+      return new Promise((resolve) => {
+        resolve(this._user);
+      });
+    }
+    return this.loadUser();
   }
 
   @LogMethod
   @MeasureMethod
   loadUser(): Promise<User> {
-    return new Promise((resolve) => resolve(this._user));
+    return new Promise((resolve) => {
+      this.http.get('assets/data/context/user.json')
+        .subscribe((json: User) => {
+          resolve(this._user = new User(json));
+        });
+    });
   }
 
-  isLoaded(): boolean {
-    return this._loaded;
+  @LogMethod
+  getCountDownResource(): Promise<CountDownResource> {
+    if (this._resource) {
+      return new Promise((resolve) => {
+        resolve(this._resource);
+      });
+    }
+    return this.loadCountDownResource();
   }
 
-  getUser(): User {
-    return this._user;
-  }
-
-  getResource(): Resource {
-    return this._resource;
+  @LogMethod
+  @MeasureMethod
+  loadCountDownResource(): Promise<CountDownResource> {
+    return new Promise((resolve) => {
+      this.http.get('assets/data/context/count-down-resource.json')
+        .subscribe((json: CountDownResource) => {
+          resolve(this._resource = new CountDownResource(json));
+        });
+    });
   }
 
 }

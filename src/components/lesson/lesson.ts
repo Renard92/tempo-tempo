@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Lesson } from "../../models/common/cursus/Lesson";
 import {ContextProvider} from "../../providers/context/context";
-import {Resource} from "../../models/common/cursus/Resource";
+import {CountDownResource} from "../../models/common/cursus/CountDownResource";
 import {LessonType} from "../../models/common/cursus/LessonType";
 import {TheoryPage} from "../../pages/theory/theory";
 import {ModalController, NavController} from "ionic-angular";
@@ -36,8 +36,8 @@ export class LessonComponent {
   ngOnInit() {
   }
 
-  presentLesson (lesson: Lesson) {
-    let resource: Resource = this.contextProvider.getResource();
+  async presentLesson (lesson: Lesson) {
+    let resource: CountDownResource = await this.contextProvider.getCountDownResource();
 
     if (lesson.type === LessonType.Theory && lesson.progress.isCompleted()) {
       this.presentTheory(lesson);

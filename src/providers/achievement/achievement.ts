@@ -30,7 +30,7 @@ export class AchievementProvider {
   @LogMethod
   @MeasureMethod
   loadAchievements(): Promise<Array<Achievement>> {
-    return new Promise((resolve) => setTimeout(() => {
+    return new Promise((resolve) => {
       this.http.get('assets/data/achievement/achievements.json')
         .subscribe((json: Array<Achievement>) => {
           resolve(
@@ -39,7 +39,7 @@ export class AchievementProvider {
               .sort(AchievementProvider.sortAchievementsByProgress)
           );
         });
-    }, 1500));
+    });
   }
 
   /**

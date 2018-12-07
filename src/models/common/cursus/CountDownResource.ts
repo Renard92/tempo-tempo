@@ -1,31 +1,27 @@
-export class Resource {
+export class CountDownResource {
 
-  static DEFAULT_RECOVERY_TIME: number = 300; /* 5 minutes */
+  static DEFAULT_RECOVERY_TIME: number = 120; /* 2 minutes */
   static DEFAULT_TOTAL_RESOURCES: number = 3;
 
   private _interval_id: number;
   private _timeout_id: number;
   private _timer_date: Date;
 
-  private _recovery: number = Resource.DEFAULT_RECOVERY_TIME; /* in seconds */
-  private _remaining: number = Resource.DEFAULT_TOTAL_RESOURCES;
-  private _total: number = Resource.DEFAULT_TOTAL_RESOURCES;
+  private _recovery: number = CountDownResource.DEFAULT_RECOVERY_TIME; /* in seconds */
+  private _remaining: number = CountDownResource.DEFAULT_TOTAL_RESOURCES;
+  private _total: number = CountDownResource.DEFAULT_TOTAL_RESOURCES;
   private _timer: number;
   private _running: boolean = false;
 
-  constructor (resource: Resource = <Resource>{}) {
-    this
-      .withTotal(resource.total || Resource.DEFAULT_TOTAL_RESOURCES)
-      .withRemaining(resource.remaining || Resource.DEFAULT_TOTAL_RESOURCES)
-      .withRecovery(resource.recovery || Resource.DEFAULT_RECOVERY_TIME)
-      .withTimer(resource.timer || 0)
-      .withRunning(resource.running || false);
-
+  constructor (resource: CountDownResource = <CountDownResource>{}) {
     this._timer_date = new Date();
-
-    if (this.running) {
-      this.start();
-    }
+    this
+      .withTotal(resource.total || CountDownResource.DEFAULT_TOTAL_RESOURCES)
+      .withRemaining(resource.remaining || CountDownResource.DEFAULT_TOTAL_RESOURCES)
+      .withRecovery(resource.recovery || CountDownResource.DEFAULT_RECOVERY_TIME)
+      .withTimer(resource.timer || 0)
+      .withRunning(false)
+      .start();
   }
 
   get recovery(): number {
@@ -96,9 +92,10 @@ export class Resource {
   /**
    * Recovers every resources
    */
-  recover () {
+  recover (): CountDownResource {
     this.stop();
     this.remaining = this.total;
+    return this;
   }
 
   /**
@@ -124,6 +121,7 @@ export class Resource {
       if (this.remaining < this.total) {
         if (andResetTimer) {
           this.stop();
+          this.timer = null;
         }
         this.start();
       } else {
@@ -135,9 +133,11 @@ export class Resource {
   /**
    * Starts the timer
    */
-  private start () {
+  private start (): CountDownResource {
     if (!this.running && this.remaining < this.total) {
-      this.timer = this.recovery;
+      if (!this.timer) {
+        this.timer = this.recovery;
+      }
 
       this._interval_id = setInterval(() => {
         this.timer--;
@@ -145,21 +145,23 @@ export class Resource {
 
       this._timeout_id = setTimeout(() => {
         this.add();
-      }, this.recovery * 1000);
+      }, this.timer * 1000);
+
+      this.running = true;
     }
-    this.running = true;
+    return this;
   }
 
   /**
    * Stops the timer
    */
-  private stop () {
+  private stop (): CountDownResource {
     if (this.running) {
       clearInterval(this._interval_id);
       clearTimeout(this._timeout_id);
-      this.timer = null;
     }
     this.running = false;
+    return this;
   }
 
   /**
